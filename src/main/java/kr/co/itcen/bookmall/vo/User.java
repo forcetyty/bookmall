@@ -13,7 +13,7 @@ public class User {
 
 	private String userid;
 	private String name;
-	private int pnumber;
+	private String pnumber;
 	private String email;
 	private String password;
 
@@ -33,11 +33,11 @@ public class User {
 		this.name = name;
 	}
 
-	public int getPnumber() {
+	public String getPnumber() {
 		return pnumber;
 	}
 
-	public void setPnumber(int pnumber) {
+	public void setPnumber(String pnumber) {
 		this.pnumber = pnumber;
 	}
 

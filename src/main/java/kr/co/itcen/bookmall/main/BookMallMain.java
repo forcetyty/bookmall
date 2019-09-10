@@ -1,8 +1,11 @@
 package kr.co.itcen.bookmall.main;
 
+import java.util.List;
 import java.util.Scanner;
 
+import kr.co.itcen.bookmall.dao.CategoryDao;
 import kr.co.itcen.bookmall.dao.MemberDao;
+import kr.co.itcen.bookmall.vo.Category;
 import kr.co.itcen.bookmall.vo.User;
 
 /*
@@ -23,30 +26,35 @@ public class BookMallMain {
 
 	}
 
+	// 초기화
 	public void init() {
 		System.out.println("************************************************************");
 		System.out.println("***************************태영 서점***************************");
 		System.out.println("************************************************************");
-		
+
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. 회원가입");
-		
+		System.out.println("1. 회원가입  2.회원리스트 출력 3.카테고리 출력");
+
 		int num = scanner.nextInt();
 
 		switch (num) {
 		case 1:
-			memberDaoTest();
+			memberDaoTestInsert();
 			break;
-
+		case 2:
+			memberDaoTest();
+		case 3:
+			categoryDaoTest();
 		default:
 			break;
 		}
-		
+
 		scanner.close();
 
 	}
 
-	public void memberDaoTest() {
+	// 회원가입하는 테이블
+	public void memberDaoTestInsert() {
 		/*
 		 * no - 기본키 - 자동증가 name - 이름 pnumber - 핸드폰 번호 email - 이메일 password - 비밀번호
 		 */
@@ -55,19 +63,19 @@ public class BookMallMain {
 		User user = new User();
 
 		System.out.println("<<<<<<<<<<<<회원가입 >>>>>>>>>>>>>");
-		
+
 		System.out.print("아이디 : ");
 		String id = scanner.nextLine();
 		user.setUserid(id);
-		
+
 		System.out.print("이름 : ");
 		String name = scanner.next();
 		user.setName(name);
-		
+
 		System.out.print("전화번호 : ");
-		int pnumber = scanner.nextInt();	
+		String pnumber = scanner.next();
 		user.setPnumber(pnumber);
-		
+
 		/*
 		 * try {
 		 * 
@@ -85,10 +93,59 @@ public class BookMallMain {
 		user.setPassword(password);
 
 		System.out.println("회원가입 완료!!!");
-		
+
 		dao.memberInsert(user);
+		scanner.close();
+	}
+	/////////////////////
+
+	// 회원리스트를 출력하는 메소드
+	public void memberDaoTest() {
+		MemberDao dao = new MemberDao();
+
+		List<User> list = dao.memberList();
+
+		for (User user : list) {
+			System.out.println(user);
+		}
+	}
+	///////////////////////
+
+	// 카테고리를 출력하는 메소드
+	public void categoryDaoTest() {
+		// 대분류 - 몇개가 있는지 출력
+		// 중분류 - 몇개가 있는지 출력
+		// 전체 리스트 출력
+		CategoryDao dao = new CategoryDao();
+
+		List<Category> list;
+
+		System.out.println("1.대분류 목록 출력 | 2.중분류 목록 출력 | 3.전체 리스트 출력");
+
+		Scanner scanner = new Scanner(System.in);
+		int num = scanner.nextInt();
+
+		switch (num) {
+		case 1:
+			list = dao.mainCatePrint();
+			for (Category cat : list) {
+				System.out.println("대분류 :" + cat.getMaincate() + "  전체 :" + cat.getCountnum());
+			}
+			break;
+
+		case 2:
+			list = dao.midCatePrint();
+			for (Category cat : list) {
+				System.out.println("중분류 :" + cat.getMidcate());
+			}
+			break;
+
+		default:
+			break;
+		}
 
 		scanner.close();
+
 	}
 
 }
