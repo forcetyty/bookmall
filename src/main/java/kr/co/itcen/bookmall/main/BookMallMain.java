@@ -3,8 +3,10 @@ package kr.co.itcen.bookmall.main;
 import java.util.List;
 import java.util.Scanner;
 
+import kr.co.itcen.bookmall.dao.BookDao;
 import kr.co.itcen.bookmall.dao.CategoryDao;
 import kr.co.itcen.bookmall.dao.MemberDao;
+import kr.co.itcen.bookmall.vo.Book;
 import kr.co.itcen.bookmall.vo.Category;
 import kr.co.itcen.bookmall.vo.User;
 
@@ -33,7 +35,7 @@ public class BookMallMain {
 		System.out.println("************************************************************");
 
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. 회원가입  2.회원리스트 출력 3.카테고리 출력 4.상품리스트 출력");
+		System.out.println("1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트");
 
 		int num = scanner.nextInt();
 
@@ -47,7 +49,7 @@ public class BookMallMain {
 		case 3:
 			categoryDaoTest();
 		case 4:
-			categoryDaoTest();
+			bookDaoTest();
 		default:
 			break;
 		}
@@ -151,10 +153,49 @@ public class BookMallMain {
 
 		scanner.close();
 	}
-	
-	//도서목록을 출력하는 메소드
+	/////////////////////
+
+	// 도서목록을 출력하는 메소드
+	// 책 코드 분류 기준!!!
+	// 코드 표!!!
+	// -- IT 00 -- html 0a / javascript 0b / jsp 0c / react 0d / spring 0e
+	// -- computer 01 -- database 0a / network 0b / os 0c /
 	public void bookDaoTest() {
+
+		// 1. 전체 수량 - 대분류, 중분류, 책 수량 출력하는 메소드
+		// 2. 책 전체 목록 출력 - isbn, name, price, maincate, midcate - 책 테이블에 대한 전체 정보 출력
+		BookDao dao = new BookDao();
+		List<Book> list;
 		
+		System.out.println(" 1. 전체 수량 | 2. 책 전체 목록 출력 ");
+		
+		Scanner scanner = new Scanner(System.in);
+		int num = scanner.nextInt();
+		
+		switch (num) {
+		case 1:
+			System.out.println("카테고리 별 책 수량 출력");
+			list = dao.bookCatePrintDao();
+			
+			for (Book book : list) {
+				System.out.println("대분류 :" + book.getMaincate() +" 중분류 :" + book.getMidcate() + " 책 수량 :" + book.getCount());
+			}
+			break;
+		case 2:
+			System.out.println("책 전체 목록 출력");
+			list = dao.bookPrintDao();
+			for (Book book : list) {
+				System.out.println("isbn :" + book.getIsbn() + " 책 이름 :" + book.getName() + " 책 가격 :" + book.getPrice()
+						+ " 대분류 : " + book.getMaincate() + " 중분류 : " + book.getMidcate());
+			}
+			break;
+
+		default:
+			break;
+		}
+
+		scanner.close();
 	}
+	/////////////////////
 
 }
