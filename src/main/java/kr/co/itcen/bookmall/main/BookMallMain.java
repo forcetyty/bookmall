@@ -39,7 +39,7 @@ public class BookMallMain {
 		System.out.println("************************************************************");
 
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트 ");
+		System.out.println("1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기");
 
 		int num = scanner.nextInt();
 
@@ -52,11 +52,16 @@ public class BookMallMain {
 			break;
 		case 3:
 			categoryDaoTest();
+			break;
 		case 4:
 			bookDaoTest();
+			break;
 		case 5:
 			cartDaoTest();
-
+			break;
+		case 6:
+			cartDaoTestPrint();
+			break;
 		default:
 			break;
 		}
@@ -211,9 +216,9 @@ public class BookMallMain {
 	// Process
 	// 1. 아이디 선택 - 해결
 	// 2. 상품목록 선택 - 해결
-	// 3. 수량 선택
-	// 4. 카트에 담김 -
-	// 5. 카트 목록!!!
+	// 3. 수량 선택 - 해결
+	// 4. 카트에 담김 - 완료
+	// 5. 카트 목록 - cartDaoTestPrint
 	public void cartDaoTest() {
 
 		// 아이디와 상품목록을 담기 위한 기능
@@ -248,42 +253,88 @@ public class BookMallMain {
 			System.out.println("책 번호 : " + j++ + " isbn :" + book.getIsbn() + " 책 제목 :" + book.getName() + " 책 가격 : "
 					+ book.getPrice() + " 대분류 : " + book.getMaincate() + " 중분류 :" + book.getMidcate());
 		}
-		
+
 		System.out.print("책 목록 선택 :");
 		int bookchoice = scanner.nextInt();
 
 		// 책의 고유번호 담기
 		vec.add(blist.get(bookchoice).getIsbn());
 
-		
 		// 수량 넣기
 		System.out.print("주문 수량 선택 :");
 		int num = scanner.nextInt();
-		
+
 		// 수량 담기
 		vec.add(String.valueOf(num));
 
-		
-		//1차 출력확인 코드
+		// 1차 출력확인 코드
 		// 회원 출력확인
-		//System.out.println(list.get(member));
+		// System.out.println(list.get(member));
 		// 책 출력확인
-		//System.out.println(blist.get(bookchoice).getIsbn());
+		// System.out.println(blist.get(bookchoice).getIsbn());
 		// 수량 출력 확인
-		//System.out.println(num);
+		// System.out.println(num);
 
 		// 2차
 		// vector 출력 확인
-		//for (int v = 0; v < vec.size(); v++) {
-		//	System.out.println(vec.elementAt(v));
-		//}
-		
+		// for (int v = 0; v < vec.size(); v++) {
+		// System.out.println(vec.elementAt(v));
+		// }
+
 		cart.setUserid(vec.elementAt(0));
 		cart.setIsbn(vec.elementAt(1));
 		cart.setNum(vec.elementAt(2));
-		
+
 		cdao.cartInsertDao(cart);
-		
+
+		scanner.close();
+	}
+
+	// 5. 카트 목록 출력
+	// a. 카트 전체 목록 출력
+	// b. 카트 회원 전체 카트 수량 출력
+	// c. 날짜별 목록 출력
+	public void cartDaoTestPrint() {
+		List<Cart> list;
+		CartDao dao = new CartDao();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("1. 카트 전체 목록 출력 | 2. 카트 회원 별 목록 출력 | 3. 날짜별 목록 출력");
+		System.out.print("선택 : ");
+		int num = scanner.nextInt();
+
+		switch (num) {
+		case 1:
+			System.out.println("-------------카트 전체 목록 출력-------------");
+			list = dao.cartPrintDao();
+			int i = 0;
+			for (Cart cart : list) {
+				System.out.println("카트 번호 :" + i++ + " 회원 아이디 :" + cart.getUserid() + " 도서 번호 : " + cart.getIsbn()
+						+ " 수량 :" + cart.getNum() + " 날짜 :" + cart.getCart_date());
+			}
+			break;
+		case 2:
+			System.out.println("-------------카트 회원 별 카트 수량 출력-------------");
+			list = dao.cartMemberPrintDao();
+			for (Cart cart : list) {
+				System.out.println("회원 아이디 :" + cart.getUserid() + " 카트 전체 수량 :" + cart.getCount());
+			}
+			break;
+		case 3:
+			System.out.println("-------------카트 날짜 별 출력-------------");
+			System.out.print("검색할 날짜 입력 (형식 : YYYY-MM-DD ):");
+			String dateInput = scanner.next();
+
+			list = dao.cartDatePrintDao(dateInput);
+			for (Cart cart : list) {
+				System.out.println("날짜 : " + cart.getCart_date() + " 회원 아이디 : " + cart.getUserid() + " 도서번호 : "
+						+ cart.getIsbn() + " 수량 : " + cart.getNum());
+			}
+			break;
+
+		default:
+			break;
+		}
+
 		scanner.close();
 
 	}

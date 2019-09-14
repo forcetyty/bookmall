@@ -5,6 +5,24 @@ public class Cart {
 	private String userid;
 	private String isbn;
 	private String num;
+	private String cart_date;
+	private int count;
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getCart_date() {
+		return cart_date;
+	}
+
+	public void setCart_date(String cart_date) {
+		this.cart_date = cart_date;
+	}
 
 	public String getNum() {
 		return num;
