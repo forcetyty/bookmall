@@ -15,7 +15,8 @@ public class ServiceUtil {
 			// 드라이버 연결
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mariadb://192.168.1.81:3306/bookmall?characterEncoding=utf8";
+			//학원 192.168.1.81
+			String url = "jdbc:mariadb://192.168.0.2:3306/bookmall?characterEncoding=utf8";
 			connection = DriverManager.getConnection(url, "bookmall", "bookmall");
 
 		} catch (ClassNotFoundException e) {

@@ -33,7 +33,7 @@ public class BookMallMain {
 		System.out.println("************************************************************");
 
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. 회원가입  2.회원리스트 출력 3.카테고리 출력");
+		System.out.println("1. 회원가입  2.회원리스트 출력 3.카테고리 출력 4.상품리스트 출력");
 
 		int num = scanner.nextInt();
 
@@ -43,7 +43,10 @@ public class BookMallMain {
 			break;
 		case 2:
 			memberDaoTest();
+			break;
 		case 3:
+			categoryDaoTest();
+		case 4:
 			categoryDaoTest();
 		default:
 			break;
@@ -139,13 +142,19 @@ public class BookMallMain {
 				System.out.println("중분류 :" + cat.getMidcate());
 			}
 			break;
-
-		default:
-			break;
+		case 3:
+			list = dao.totalPrint();
+			for (Category cat : list) {
+				System.out.println("대분류 :" + cat.getMaincate() + ":" + "중분류 :" + cat.getMidcate());
+			}
 		}
 
 		scanner.close();
-
+	}
+	
+	//도서목록을 출력하는 메소드
+	public void bookDaoTest() {
+		
 	}
 
 }
