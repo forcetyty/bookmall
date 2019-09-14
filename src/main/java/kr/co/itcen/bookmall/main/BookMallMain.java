@@ -1,12 +1,16 @@
 package kr.co.itcen.bookmall.main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Vector;
 
 import kr.co.itcen.bookmall.dao.BookDao;
+import kr.co.itcen.bookmall.dao.CartDao;
 import kr.co.itcen.bookmall.dao.CategoryDao;
 import kr.co.itcen.bookmall.dao.MemberDao;
 import kr.co.itcen.bookmall.vo.Book;
+import kr.co.itcen.bookmall.vo.Cart;
 import kr.co.itcen.bookmall.vo.Category;
 import kr.co.itcen.bookmall.vo.User;
 
@@ -35,7 +39,7 @@ public class BookMallMain {
 		System.out.println("************************************************************");
 
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트");
+		System.out.println("1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트 ");
 
 		int num = scanner.nextInt();
 
@@ -50,6 +54,9 @@ public class BookMallMain {
 			categoryDaoTest();
 		case 4:
 			bookDaoTest();
+		case 5:
+			cartDaoTest();
+
 		default:
 			break;
 		}
@@ -111,7 +118,8 @@ public class BookMallMain {
 		List<User> list = dao.memberList();
 
 		for (User user : list) {
-			System.out.println(user);
+			System.out.println("유저 아이디 :" + user.getUserid() + " 이름 :" + user.getName() + " 핸드폰 번호 :"
+					+ user.getPnumber() + " 이메일 주소 :" + user.getEmail());
 		}
 	}
 	///////////////////////
@@ -166,19 +174,20 @@ public class BookMallMain {
 		// 2. 책 전체 목록 출력 - isbn, name, price, maincate, midcate - 책 테이블에 대한 전체 정보 출력
 		BookDao dao = new BookDao();
 		List<Book> list;
-		
+
 		System.out.println(" 1. 전체 수량 | 2. 책 전체 목록 출력 ");
-		
+
 		Scanner scanner = new Scanner(System.in);
 		int num = scanner.nextInt();
-		
+
 		switch (num) {
 		case 1:
 			System.out.println("카테고리 별 책 수량 출력");
 			list = dao.bookCatePrintDao();
-			
+
 			for (Book book : list) {
-				System.out.println("대분류 :" + book.getMaincate() +" 중분류 :" + book.getMidcate() + " 책 수량 :" + book.getCount());
+				System.out.println(
+						"대분류 :" + book.getMaincate() + " 중분류 :" + book.getMidcate() + " 책 수량 :" + book.getCount());
 			}
 			break;
 		case 2:
@@ -197,5 +206,86 @@ public class BookMallMain {
 		scanner.close();
 	}
 	/////////////////////
+
+	// 카트 리스트 확인
+	// Process
+	// 1. 아이디 선택 - 해결
+	// 2. 상품목록 선택 - 해결
+	// 3. 수량 선택
+	// 4. 카트에 담김 -
+	// 5. 카트 목록!!!
+	public void cartDaoTest() {
+
+		// 아이디와 상품목록을 담기 위한 기능
+		Vector<String> vec = new Vector<String>();
+		Cart cart = new Cart();
+		CartDao cdao = new CartDao();
+
+		// 회원 목록 Dao 생성
+		MemberDao mdao = new MemberDao();
+		List<User> list = mdao.memberList();
+		Scanner scanner = new Scanner(System.in);
+		int i = 0; // 회원 목록에 대한 번호를 주기 위한 초기 값
+
+		// 책 목록 Dao 생성
+		BookDao bdao = new BookDao();
+		List<Book> blist = bdao.bookPrintDao();
+		int j = 0; // 책 목록에 대한 번호를 주기 위한 초기 값
+
+		// 회원 목록 출력
+		for (User user : list) {
+			System.out.println("회원 번호 :" + i++ + " ID :" + user.getUserid() + " Name :" + user.getName());
+		}
+
+		System.out.print("회원번호 선택 : ");
+		int member = scanner.nextInt();
+
+		// 회원의 아이디 담기
+		vec.add(list.get(member).getUserid());
+
+		// 책 목록 출력
+		for (Book book : blist) {
+			System.out.println("책 번호 : " + j++ + " isbn :" + book.getIsbn() + " 책 제목 :" + book.getName() + " 책 가격 : "
+					+ book.getPrice() + " 대분류 : " + book.getMaincate() + " 중분류 :" + book.getMidcate());
+		}
+		
+		System.out.print("책 목록 선택 :");
+		int bookchoice = scanner.nextInt();
+
+		// 책의 고유번호 담기
+		vec.add(blist.get(bookchoice).getIsbn());
+
+		
+		// 수량 넣기
+		System.out.print("주문 수량 선택 :");
+		int num = scanner.nextInt();
+		
+		// 수량 담기
+		vec.add(String.valueOf(num));
+
+		
+		//1차 출력확인 코드
+		// 회원 출력확인
+		//System.out.println(list.get(member));
+		// 책 출력확인
+		//System.out.println(blist.get(bookchoice).getIsbn());
+		// 수량 출력 확인
+		//System.out.println(num);
+
+		// 2차
+		// vector 출력 확인
+		//for (int v = 0; v < vec.size(); v++) {
+		//	System.out.println(vec.elementAt(v));
+		//}
+		
+		cart.setUserid(vec.elementAt(0));
+		cart.setIsbn(vec.elementAt(1));
+		cart.setNum(vec.elementAt(2));
+		
+		cdao.cartInsertDao(cart);
+		
+		scanner.close();
+
+	}
 
 }
