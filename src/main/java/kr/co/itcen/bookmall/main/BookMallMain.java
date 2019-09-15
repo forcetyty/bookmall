@@ -12,7 +12,8 @@ import kr.co.itcen.bookmall.dao.MemberDao;
 import kr.co.itcen.bookmall.vo.Book;
 import kr.co.itcen.bookmall.vo.Cart;
 import kr.co.itcen.bookmall.vo.Category;
-import kr.co.itcen.bookmall.vo.User;
+import kr.co.itcen.bookmall.vo.Member;
+
 
 /*
  * - BookMall을 실행시키는 메인 클래스
@@ -77,21 +78,21 @@ public class BookMallMain {
 		 */
 		Scanner scanner = new Scanner(System.in);
 		MemberDao dao = new MemberDao();
-		User user = new User();
+		Member member = new Member();
 
 		System.out.println("<<<<<<<<<<<<회원가입 >>>>>>>>>>>>>");
 
 		System.out.print("아이디 : ");
 		String id = scanner.nextLine();
-		user.setUserid(id);
+		member.setUserid(id);
 
 		System.out.print("이름 : ");
 		String name = scanner.next();
-		user.setName(name);
+		member.setName(name);
 
 		System.out.print("전화번호 : ");
 		String pnumber = scanner.next();
-		user.setPnumber(pnumber);
+		member.setPnumber(pnumber);
 
 		/*
 		 * try {
@@ -103,15 +104,15 @@ public class BookMallMain {
 
 		System.out.print("이메일 : ");
 		String email = scanner.next();
-		user.setEmail(email);
+		member.setEmail(email);
 
 		System.out.print("비밀번호 : ");
 		String password = scanner.next();
-		user.setPassword(password);
+		member.setPassword(password);
 
 		System.out.println("회원가입 완료!!!");
 
-		dao.memberInsert(user);
+		dao.memberInsert(member);
 		scanner.close();
 	}
 	/////////////////////
@@ -120,11 +121,11 @@ public class BookMallMain {
 	public void memberDaoTest() {
 		MemberDao dao = new MemberDao();
 
-		List<User> list = dao.memberList();
+		List<Member> list = dao.memberList();
 
-		for (User user : list) {
-			System.out.println("유저 아이디 :" + user.getUserid() + " 이름 :" + user.getName() + " 핸드폰 번호 :"
-					+ user.getPnumber() + " 이메일 주소 :" + user.getEmail());
+		for (Member member : list) {
+			System.out.println("유저 아이디 :" + member.getUserid() + " 이름 :" + member.getName() + " 핸드폰 번호 :"
+					+ member.getPnumber() + " 이메일 주소 :" + member.getEmail());
 		}
 	}
 	///////////////////////
@@ -228,7 +229,7 @@ public class BookMallMain {
 
 		// 회원 목록 Dao 생성
 		MemberDao mdao = new MemberDao();
-		List<User> list = mdao.memberList();
+		List<Member> list = mdao.memberList();
 		Scanner scanner = new Scanner(System.in);
 		int i = 0; // 회원 목록에 대한 번호를 주기 위한 초기 값
 
@@ -238,15 +239,15 @@ public class BookMallMain {
 		int j = 0; // 책 목록에 대한 번호를 주기 위한 초기 값
 
 		// 회원 목록 출력
-		for (User user : list) {
-			System.out.println("회원 번호 :" + i++ + " ID :" + user.getUserid() + " Name :" + user.getName());
+		for (Member member : list) {
+			System.out.println("회원 번호 :" + i++ + " ID :" + member.getUserid() + " Name :" + member.getName());
 		}
 
 		System.out.print("회원번호 선택 : ");
-		int member = scanner.nextInt();
+		int memnum = scanner.nextInt();
 
 		// 회원의 아이디 담기
-		vec.add(list.get(member).getUserid());
+		vec.add(list.get(memnum).getUserid());
 
 		// 책 목록 출력
 		for (Book book : blist) {

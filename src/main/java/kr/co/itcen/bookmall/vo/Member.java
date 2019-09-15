@@ -9,7 +9,7 @@ package kr.co.itcen.bookmall.vo;
  * password - 비밀번호
  */
 
-public class User {
+public class Member {
 
 	private String userid;
 	private String name;

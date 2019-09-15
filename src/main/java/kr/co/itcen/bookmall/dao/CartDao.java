@@ -20,7 +20,7 @@ public class CartDao {
 
 		try {
 			con = ServiceUtil.getConnection();
-			String sql = "insert into cart values(?,?,?, now())";
+			String sql = "insert into cart values(null,?,?,?, now())";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, cart.getUserid()); // userid 입력
@@ -62,7 +62,7 @@ public class CartDao {
 
 		try {
 			con = ServiceUtil.getConnection();
-			String sql = "select userid, isbn, num, cart_date from cart;";
+			String sql = "select userid, isbn, num, cart_date from cart";
 
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();

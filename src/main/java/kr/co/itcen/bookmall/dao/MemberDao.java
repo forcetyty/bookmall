@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.itcen.bookmall.service.ServiceUtil;
-import kr.co.itcen.bookmall.vo.User;
+import kr.co.itcen.bookmall.vo.Member;
 
-/* user Table 구조
+
+/* member Table 구조
  * no - 기본키 - Auto
  * name - 이름 - String
  * pnumber - 핸드폰 번호 - int
@@ -20,21 +21,21 @@ import kr.co.itcen.bookmall.vo.User;
 
 public class MemberDao {
 
-	public void memberInsert(User user) {
+	public void memberInsert(Member member) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			con = ServiceUtil.getConnection();
-			String sql = "insert into user values(?, ?, ?, ?, ?)";
+			String sql = "insert into member values(?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, user.getUserid()); // 아이디
-			pstmt.setString(2, user.getPassword());// 비밀번호
-			pstmt.setString(3, user.getName()); // 이름
-			pstmt.setString(4, user.getPnumber()); // 폰번호
-			pstmt.setString(5, user.getEmail()); // 이메일 주소
+			pstmt.setString(1, member.getUserid()); // 아이디
+			pstmt.setString(2, member.getPassword());// 비밀번호
+			pstmt.setString(3, member.getName()); // 이름
+			pstmt.setString(4, member.getPnumber()); // 폰번호
+			pstmt.setString(5, member.getEmail()); // 이메일 주소
 
 			pstmt.execute();
 			con.commit();
@@ -62,8 +63,8 @@ public class MemberDao {
 	}
 
 	// DataBase에서 회원테이블에 대한 정보를 가져오는 메소드
-	public List<User> memberList() {
-		List<User> list = new ArrayList<User>();
+	public List<Member> memberList() {
+		List<Member> list = new ArrayList<Member>();
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -71,7 +72,7 @@ public class MemberDao {
 
 		try {
 			con = ServiceUtil.getConnection();
-			String sql = "select userid, password, name, number, email from user";
+			String sql = "select userid, password, name, number, email from member";
 			
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -84,15 +85,15 @@ public class MemberDao {
 				String pnumber = rs.getString(4);
 				String email = rs.getString(5);
 
-				User user = new User();
+				Member member = new Member();
 
-				user.setUserid(id);
-				user.setPassword(pass);
-				user.setName(name);
-				user.setPnumber(pnumber);
-				user.setEmail(email);
+				member.setUserid(id);
+				member.setPassword(pass);
+				member.setName(name);
+				member.setPnumber(pnumber);
+				member.setEmail(email);
 
-				list.add(user);
+				list.add(member);
 			}
 
 		} catch (SQLException e) {
