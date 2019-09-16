@@ -14,7 +14,6 @@ import kr.co.itcen.bookmall.vo.Cart;
 import kr.co.itcen.bookmall.vo.Category;
 import kr.co.itcen.bookmall.vo.Member;
 
-
 /*
  * - BookMall을 실행시키는 메인 클래스
  * - 핵심 메소드
@@ -40,7 +39,7 @@ public class BookMallMain {
 		System.out.println("************************************************************");
 
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기");
+		System.out.println("1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기 " + "7. 카트 주문  8. 카트목록보기");
 
 		int num = scanner.nextInt();
 
@@ -62,6 +61,9 @@ public class BookMallMain {
 			break;
 		case 6:
 			cartDaoTestPrint();
+			break;
+		case 7:
+			cartOrder();
 			break;
 		default:
 			break;
@@ -337,6 +339,51 @@ public class BookMallMain {
 		}
 
 		scanner.close();
+	}
+	/////////////////////
+
+
+	// cartOrder
+	// 카트에 있는 목록을 실제 주문하도록 하는 기능을 갖고 있음
+	// 
+	// bookorder Table 구조
+	// cartno - int - 카트 고유 번호를 가지고 오는 기능
+	// orderno - int - 주문 고유 번호
+	// order_date - date - 주문날짜
+	// Process
+	// 1. 회원 아이디 출력 - 해결
+	// 2. 아이디 별 카트 목록 출력 -
+	// 3. 카트 목록 주문
+	// 4. 카트 목록 -> bookorder라는 테이블에 들어감
+	public void cartOrder() {
+
+		System.out.println("-------------카트 목록 주문-------------");
+		Scanner scanner = new Scanner(System.in);
+
+		// 카트에 대한 주문 정보를 담기 위한 테이블
+		Vector<String> vorder = new Vector<String>();
+		
+		CartDao cdao = new CartDao();
+
+		// 회원 목록 Dao 생성
+		MemberDao mdao = new MemberDao();
+		List<Member> list = mdao.memberList();
+		int i = 0; // 회원 목록에 대한 번호 부여
+
+		// 회원 목록 출력
+		for (Member member : list) {
+			System.out.println("회원 번호 :" + i++ + " ID :" + member.getUserid() + " Name :" + member.getName());
+		}
+
+		System.out.print("회원 아이디 선택 : ");
+		int memnum = scanner.nextInt();
+		
+		//선택된 회원 번호 출력
+		System.out.println("회원 아이디 :" + list.get(memnum).getUserid());
+		
+		
+		
+		
 
 	}
 

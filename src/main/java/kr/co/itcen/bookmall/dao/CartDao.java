@@ -162,7 +162,7 @@ public class CartDao {
 		return list;
 	}
 	
-	// 카트 회원 전체 카트 수량 출력
+	// 날짜별 카트 회원 수량 출력
 	public List<Cart> cartDatePrintDao(String date) {
 		List<Cart> list = new ArrayList<Cart>();
 
