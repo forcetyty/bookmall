@@ -9,7 +9,10 @@ import kr.co.itcen.bookmall.dao.BookDao;
 import kr.co.itcen.bookmall.dao.CartDao;
 import kr.co.itcen.bookmall.dao.CategoryDao;
 import kr.co.itcen.bookmall.dao.MemberDao;
+import kr.co.itcen.bookmall.dao.OrderDao;
 import kr.co.itcen.bookmall.vo.Book;
+import kr.co.itcen.bookmall.vo.BookCartVo;
+import kr.co.itcen.bookmall.vo.BookOrder;
 import kr.co.itcen.bookmall.vo.Cart;
 import kr.co.itcen.bookmall.vo.Category;
 import kr.co.itcen.bookmall.vo.Member;
@@ -342,28 +345,25 @@ public class BookMallMain {
 	}
 	/////////////////////
 
-
 	// cartOrder
 	// 카트에 있는 목록을 실제 주문하도록 하는 기능을 갖고 있음
-	// 
+	//
 	// bookorder Table 구조
 	// cartno - int - 카트 고유 번호를 가지고 오는 기능
 	// orderno - int - 주문 고유 번호
 	// order_date - date - 주문날짜
 	// Process
 	// 1. 회원 아이디 출력 - 해결
-	// 2. 아이디 별 카트 목록 출력 -
+	// 2. 아이디에 담겨 있는 카트 목록 출력 -해결
 	// 3. 카트 목록 주문
 	// 4. 카트 목록 -> bookorder라는 테이블에 들어감
 	public void cartOrder() {
 
-		System.out.println("-------------카트 목록 주문-------------");
+		System.out.println("-------------회원 목록 -------------");
 		Scanner scanner = new Scanner(System.in);
 
 		// 카트에 대한 주문 정보를 담기 위한 테이블
 		Vector<String> vorder = new Vector<String>();
-		
-		CartDao cdao = new CartDao();
 
 		// 회원 목록 Dao 생성
 		MemberDao mdao = new MemberDao();
@@ -377,13 +377,64 @@ public class BookMallMain {
 
 		System.out.print("회원 아이디 선택 : ");
 		int memnum = scanner.nextInt();
-		
-		//선택된 회원 번호 출력
+
+		// 선택된 회원 번호 출력
 		System.out.println("회원 아이디 :" + list.get(memnum).getUserid());
-		
-		
-		
-		
+
+		// 아이디별 카트 목록 Dao 호출
+		CartDao cdao = new CartDao();
+		List<Cart> clist = cdao.cartChoicePrintDao(list.get(memnum).getUserid());
+
+		// 회원이 가지고 있는 카트 출력
+		// "select isbn, num, cart_date from cart where userid = ?";
+		// 카트를 선택하면 카트에 담겨있는 책 정보도 볼수 있게 해야 함.
+		System.out.println("--------" + list.get(memnum).getUserid() + " 회원 카트 목록 출력 --------");
+		int j = 0;
+		for (Cart cart : clist) {
+			System.out.println("카트 선택 번호 : " + j++ + " 도서번호 :" + cart.getIsbn() + " 수량 :" + cart.getNum() + " 날짜 :"
+					+ cart.getCart_date() + " 카트 고유 번호 :" + cart.getNo());
+		}
+		System.out.print("카트 선택 :");
+		int orderchoice = scanner.nextInt();
+
+		// 주문실행
+		OrderDao orderDao = new OrderDao();
+		System.out.println(clist.get(orderchoice).getNo());
+
+		System.out.println("-------주문 실행----------");
+
+		System.out.println("선택한 카트목록에 대한 주문을 실행하시겠습니까??? 1. Yes 2.No");
+		System.out.println("번호 선택 :");
+		int choice = scanner.nextInt();
+
+		if (choice == 1) {
+			System.out.print("배송지를 입력해주세요 : ");
+			String address = scanner.next();
+
+			if (address.length() > 0) {
+				orderDao.cartOrderDao(clist.get(orderchoice).getNo(), address);
+				System.out.println("주문 성공");
+			}
+		} else {
+			System.out.println("주문을 취소하셨습니다.");
+		}
+
+		///////
+//		System.out.print("------카트에 담긴 책 제목 출력 : ");
+//		int cartChoice = scanner.nextInt();
+//		
+//		//선택 카트 확인
+//		System.out.println("선택 카트 :" + clist.get(cartChoice).getIsbn());
+//
+//		// 카트번호를 선택하면 도서정보가 나오는 기능
+//		CartDao cbdao = new CartDao();
+//		List<BookCartVo> cblist = cbdao.cartChoiceBookPrintDao(clist.get(cartChoice).getIsbn());
+//		int k = 0;
+//		for (BookCartVo bookcart : cblist) {
+//			System.out.println("번호 : " + k++ +"회원 아이디 :" + bookcart.getUserid() + " 도서번호 :" + bookcart.getIsbn() + " 책 제목 :"
+//					+ bookcart.getName() + " 책 가격 :" + bookcart.getPrice() +" 카트 날짜 :" + bookcart.getCart_date());
+//		}
+		///////
 
 	}
 
