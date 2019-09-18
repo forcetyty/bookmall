@@ -21,7 +21,7 @@ public class CartDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "insert into cart values(null,?,?,?, now())";
+			String sql = "insert into cart values(null,?,?,?, now(), null)";
 			con = ServiceUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 

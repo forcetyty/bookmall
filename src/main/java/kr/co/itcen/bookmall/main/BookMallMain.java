@@ -13,6 +13,7 @@ import kr.co.itcen.bookmall.dao.OrderDao;
 import kr.co.itcen.bookmall.vo.Book;
 import kr.co.itcen.bookmall.vo.BookCartVo;
 import kr.co.itcen.bookmall.vo.BookOrder;
+import kr.co.itcen.bookmall.vo.BookOrderDetail;
 import kr.co.itcen.bookmall.vo.Cart;
 import kr.co.itcen.bookmall.vo.Category;
 import kr.co.itcen.bookmall.vo.Member;
@@ -41,39 +42,58 @@ public class BookMallMain {
 		System.out.println("***************************태영 서점***************************");
 		System.out.println("************************************************************");
 
+		Boolean codetf = true;
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기 " + "7. 카트 주문  8. 카트목록보기");
+		int num = 0;
 
-		int num = scanner.nextInt();
+		//while (true) {
+			System.out.println(
+					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
 
-		switch (num) {
-		case 1:
-			memberDaoTestInsert();
-			break;
-		case 2:
-			memberDaoTest();
-			break;
-		case 3:
-			categoryDaoTest();
-			break;
-		case 4:
-			bookDaoTest();
-			break;
-		case 5:
-			cartDaoTest();
-			break;
-		case 6:
-			cartDaoTestPrint();
-			break;
-		case 7:
-			cartOrder();
-			break;
-		default:
-			break;
-		}
+			num = scanner.nextInt();
 
+			switch (num) {
+			case 1:
+				memberDaoTestInsert();
+				Thread.holdsLock(scanner);
+				break;
+			case 2:
+				memberDaoTest();
+				Thread.holdsLock(scanner);
+				break;
+			case 3:
+				categoryDaoTest();
+				Thread.holdsLock(scanner);
+				break;
+			case 4:
+				bookDaoTest();
+				Thread.holdsLock(scanner);
+				break;
+			case 5:
+				cartDaoTest();
+				Thread.holdsLock(scanner);
+				break;
+			case 6:
+				cartDaoTestPrint();
+				Thread.holdsLock(scanner);
+				break;
+			case 7:
+				cartOrder();
+				Thread.holdsLock(scanner);
+				break;
+			case 8:
+				OrderDaoTest();
+				Thread.holdsLock(scanner);
+				break;
+			}
+			
+			if (num == 9) {
+				System.out.println("프로그램 종료");
+				//break;
+			}
+
+		//}
 		scanner.close();
-
 	}
 
 	// 회원가입하는 테이블
@@ -272,6 +292,7 @@ public class BookMallMain {
 
 		// 수량 담기
 		vec.add(String.valueOf(num));
+		
 
 		// 1차 출력확인 코드
 		// 회원 출력확인
@@ -292,7 +313,7 @@ public class BookMallMain {
 		cart.setNum(vec.elementAt(2));
 
 		cdao.cartInsertDao(cart);
-
+		System.out.println(list.get(memnum).getUserid() + " 회원카트 담기 성공!!!");
 		scanner.close();
 	}
 
@@ -301,6 +322,7 @@ public class BookMallMain {
 	// b. 카트 회원 전체 카트 수량 출력
 	// c. 날짜별 목록 출력
 	public void cartDaoTestPrint() {
+
 		List<Cart> list;
 		CartDao dao = new CartDao();
 		Scanner scanner = new Scanner(System.in);
@@ -352,18 +374,16 @@ public class BookMallMain {
 	// cartno - int - 카트 고유 번호를 가지고 오는 기능
 	// orderno - int - 주문 고유 번호
 	// order_date - date - 주문날짜
+	// addr - String - 주소
 	// Process
 	// 1. 회원 아이디 출력 - 해결
 	// 2. 아이디에 담겨 있는 카트 목록 출력 -해결
-	// 3. 카트 목록 주문
-	// 4. 카트 목록 -> bookorder라는 테이블에 들어감
+	// 3. 카트 목록 주문 - 해결
+	// 4. 카트 목록 -> bookorder라는 테이블에 들어감 - 해결
 	public void cartOrder() {
 
 		System.out.println("-------------회원 목록 -------------");
 		Scanner scanner = new Scanner(System.in);
-
-		// 카트에 대한 주문 정보를 담기 위한 테이블
-		Vector<String> vorder = new Vector<String>();
 
 		// 회원 목록 Dao 생성
 		MemberDao mdao = new MemberDao();
@@ -412,14 +432,13 @@ public class BookMallMain {
 			String address = scanner.next();
 
 			if (address.length() > 0) {
-				orderDao.cartOrderDao(clist.get(orderchoice).getNo(), address);
+				orderDao.cartOrderDao(clist.get(orderchoice).getNo(), address, clist.get(orderchoice).getIsbn());
 				System.out.println("주문 성공");
 			}
 		} else {
 			System.out.println("주문을 취소하셨습니다.");
 		}
 
-		///////
 //		System.out.print("------카트에 담긴 책 제목 출력 : ");
 //		int cartChoice = scanner.nextInt();
 //		
@@ -434,7 +453,56 @@ public class BookMallMain {
 //			System.out.println("번호 : " + k++ +"회원 아이디 :" + bookcart.getUserid() + " 도서번호 :" + bookcart.getIsbn() + " 책 제목 :"
 //					+ bookcart.getName() + " 책 가격 :" + bookcart.getPrice() +" 카트 날짜 :" + bookcart.getCart_date());
 //		}
-		///////
+		
+		
+		//보류
+		//카트에서 주문시 카트에 주문정보 업데이트
+		//int orderno = 0;
+		//orderno = orderDao.selectOrderno(clist.get(orderchoice).getNo());
+		//System.out.println(orderno);
+		//orderDao.orderCartUpdate(orderno,clist.get(orderchoice).getNo());
+		
+		scanner.close();
+	}
+	/////////////////////
+
+	// 주문 테이블에 있는 정보를 출력하는 메소드
+	// 1. 주문 테이블 전체에 대한 정보 출력
+	// 2. 주문일자별 주문 테이블 정보 출력
+	// 3. 주문상세정보 출력 -
+	public void OrderDaoTest() {
+		System.out.println("-------------------주문 목록 확인-------------------");
+		Scanner scanner = new Scanner(System.in);
+		int num = 0;
+		
+		System.out.println("1.주문 전체 목록 확인  2.주문 도서 리스트 확인");
+		num = scanner.nextInt();
+		
+
+		// 전체 주문목록 Dao 생성
+		OrderDao dao = new OrderDao();
+		
+		List<BookOrder> alllist = dao.orderAllPrintDao();
+		List<BookOrderDetail> bodlist = dao.orderMemberPrintDao();
+		
+		//주문목록 출력 
+		switch (num) {
+		case 1:
+			System.out.println("주문 전체 목록");
+			for (BookOrder bookorder : alllist) {
+				System.out.println("주문 카트번호 :" + bookorder.getCartno() + " 주문번호 :" + bookorder.getOrderno() + " 주문일자 :" + bookorder.getOrder_date() + " 주소 :" + bookorder.getAddr());
+			}
+		case 2:
+			System.out.println("주문 도서 리스트 확인");
+			for (BookOrderDetail bookorderdetail : bodlist) {
+				System.out.println("책 제목 :" + bookorderdetail.getName() + " 가격 :" + bookorderdetail.getPrice() +" 주문번호 :"+ bookorderdetail.getOrderNum() + "배송지" + bookorderdetail.getAddress() +" 주문 일자 :"+ bookorderdetail.getOrder_date());
+			}
+			break;
+
+		default:
+			break;
+		}
+		
 
 	}
 
