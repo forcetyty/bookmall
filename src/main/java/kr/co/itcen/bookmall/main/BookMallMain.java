@@ -28,72 +28,111 @@ import kr.co.itcen.bookmall.vo.Member;
  * - 5. OrderDaoTest
  */
 public class BookMallMain {
+	static Scanner scan = new Scanner(System.in);
+	static int num = 0;
+	static String numStr;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BookMallMain book = new BookMallMain();
-		book.init();
+		//book.init();
+		
+		System.out.println("************************************************************");
+		System.out.println("***************************태영 서점***************************");
+		System.out.println("************************************************************");
+
+		// Scanner scanner = new Scanner(System.in);
+
+		while (true) {
+			System.out.println(
+					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
+			
+			num = scan.nextInt();	
+			// No Such ElemntException
+			// 이 지속적으로 발생한다.
+			// 해결방법을 고민해봐야 한다.
+			//num = Integer.parseInt(numStr);
+			
+			switch (num) {
+				case 1:
+					book.memberDaoTestInsert();
+					break;
+				case 2:
+					book.memberDaoTest();
+					break;
+				case 3:
+					book.categoryDaoTest();
+					break;
+				case 4:
+					book.bookDaoTest();
+					break;
+				case 5:
+					book.cartDaoTest();
+					break;
+				case 6:
+					book.cartDaoTestPrint();
+					break;
+				case 7:
+					book.cartOrder();
+					break;
+				case 8:
+					book.OrderDaoTest();
+					break;
+				}
+			if (num == 9) {
+				System.out.println("프로그램 종료");
+				break;
+			}
+		}
 
 	}
 
 	// 초기화
 	public void init() {
-		System.out.println("************************************************************");
-		System.out.println("***************************태영 서점***************************");
-		System.out.println("************************************************************");
-
-		Boolean codetf = true;
-		Scanner scanner = new Scanner(System.in);
-		int num = 0;
-
-		//while (true) {
-			System.out.println(
-					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
-
-			num = scanner.nextInt();
-
-			switch (num) {
-			case 1:
-				memberDaoTestInsert();
-				Thread.holdsLock(scanner);
-				break;
-			case 2:
-				memberDaoTest();
-				Thread.holdsLock(scanner);
-				break;
-			case 3:
-				categoryDaoTest();
-				Thread.holdsLock(scanner);
-				break;
-			case 4:
-				bookDaoTest();
-				Thread.holdsLock(scanner);
-				break;
-			case 5:
-				cartDaoTest();
-				Thread.holdsLock(scanner);
-				break;
-			case 6:
-				cartDaoTestPrint();
-				Thread.holdsLock(scanner);
-				break;
-			case 7:
-				cartOrder();
-				Thread.holdsLock(scanner);
-				break;
-			case 8:
-				OrderDaoTest();
-				Thread.holdsLock(scanner);
-				break;
-			}
-			
-			if (num == 9) {
-				System.out.println("프로그램 종료");
-				//break;
-			}
-
-		//}
-		scanner.close();
+//		System.out.println("************************************************************");
+//		System.out.println("***************************태영 서점***************************");
+//		System.out.println("************************************************************");
+//
+//		// Scanner scanner = new Scanner(System.in);
+//
+//		while (true) {
+//			System.out.println(
+//					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
+//			
+//			num = scan.nextInt();
+//			switch (num) {
+//			case 1:
+//				memberDaoTestInsert();
+//				break;
+//			case 2:
+//				memberDaoTest();
+//				break;
+//			case 3:
+//				categoryDaoTest();
+//				break;
+//			case 4:
+//				bookDaoTest();
+//				break;
+//			case 5:
+//				cartDaoTest();
+//				break;
+//			case 6:
+//				cartDaoTestPrint();
+//				break;
+//			case 7:
+//				cartOrder();
+//				break;
+//			case 8:
+//				OrderDaoTest();
+//				break;
+//			}
+//
+//			if (num == 9) {
+//				System.out.println("프로그램 종료");
+//				break;
+//			}
+//		}
+		// scanner.close();
 	}
 
 	// 회원가입하는 테이블
@@ -170,6 +209,7 @@ public class BookMallMain {
 		int num = scanner.nextInt();
 
 		switch (num) {
+		
 		case 1:
 			list = dao.mainCatePrint();
 			for (Category cat : list) {
@@ -292,22 +332,6 @@ public class BookMallMain {
 
 		// 수량 담기
 		vec.add(String.valueOf(num));
-		
-
-		// 1차 출력확인 코드
-		// 회원 출력확인
-		// System.out.println(list.get(member));
-		// 책 출력확인
-		// System.out.println(blist.get(bookchoice).getIsbn());
-		// 수량 출력 확인
-		// System.out.println(num);
-
-		// 2차
-		// vector 출력 확인
-		// for (int v = 0; v < vec.size(); v++) {
-		// System.out.println(vec.elementAt(v));
-		// }
-
 		cart.setUserid(vec.elementAt(0));
 		cart.setIsbn(vec.elementAt(1));
 		cart.setNum(vec.elementAt(2));
@@ -369,17 +393,6 @@ public class BookMallMain {
 
 	// cartOrder
 	// 카트에 있는 목록을 실제 주문하도록 하는 기능을 갖고 있음
-	//
-	// bookorder Table 구조
-	// cartno - int - 카트 고유 번호를 가지고 오는 기능
-	// orderno - int - 주문 고유 번호
-	// order_date - date - 주문날짜
-	// addr - String - 주소
-	// Process
-	// 1. 회원 아이디 출력 - 해결
-	// 2. 아이디에 담겨 있는 카트 목록 출력 -해결
-	// 3. 카트 목록 주문 - 해결
-	// 4. 카트 목록 -> bookorder라는 테이블에 들어감 - 해결
 	public void cartOrder() {
 
 		System.out.println("-------------회원 목록 -------------");
@@ -406,7 +419,6 @@ public class BookMallMain {
 		List<Cart> clist = cdao.cartChoicePrintDao(list.get(memnum).getUserid());
 
 		// 회원이 가지고 있는 카트 출력
-		// "select isbn, num, cart_date from cart where userid = ?";
 		// 카트를 선택하면 카트에 담겨있는 책 정보도 볼수 있게 해야 함.
 		System.out.println("--------" + list.get(memnum).getUserid() + " 회원 카트 목록 출력 --------");
 		int j = 0;
@@ -439,70 +451,46 @@ public class BookMallMain {
 			System.out.println("주문을 취소하셨습니다.");
 		}
 
-//		System.out.print("------카트에 담긴 책 제목 출력 : ");
-//		int cartChoice = scanner.nextInt();
-//		
-//		//선택 카트 확인
-//		System.out.println("선택 카트 :" + clist.get(cartChoice).getIsbn());
-//
-//		// 카트번호를 선택하면 도서정보가 나오는 기능
-//		CartDao cbdao = new CartDao();
-//		List<BookCartVo> cblist = cbdao.cartChoiceBookPrintDao(clist.get(cartChoice).getIsbn());
-//		int k = 0;
-//		for (BookCartVo bookcart : cblist) {
-//			System.out.println("번호 : " + k++ +"회원 아이디 :" + bookcart.getUserid() + " 도서번호 :" + bookcart.getIsbn() + " 책 제목 :"
-//					+ bookcart.getName() + " 책 가격 :" + bookcart.getPrice() +" 카트 날짜 :" + bookcart.getCart_date());
-//		}
-		
-		
-		//보류
-		//카트에서 주문시 카트에 주문정보 업데이트
-		//int orderno = 0;
-		//orderno = orderDao.selectOrderno(clist.get(orderchoice).getNo());
-		//System.out.println(orderno);
-		//orderDao.orderCartUpdate(orderno,clist.get(orderchoice).getNo());
-		
+
 		scanner.close();
 	}
 	/////////////////////
 
 	// 주문 테이블에 있는 정보를 출력하는 메소드
-	// 1. 주문 테이블 전체에 대한 정보 출력
-	// 2. 주문일자별 주문 테이블 정보 출력
-	// 3. 주문상세정보 출력 -
 	public void OrderDaoTest() {
 		System.out.println("-------------------주문 목록 확인-------------------");
 		Scanner scanner = new Scanner(System.in);
 		int num = 0;
-		
+
 		System.out.println("1.주문 전체 목록 확인  2.주문 도서 리스트 확인");
 		num = scanner.nextInt();
-		
 
 		// 전체 주문목록 Dao 생성
 		OrderDao dao = new OrderDao();
-		
+
 		List<BookOrder> alllist = dao.orderAllPrintDao();
 		List<BookOrderDetail> bodlist = dao.orderMemberPrintDao();
-		
-		//주문목록 출력 
+
+		// 주문목록 출력
 		switch (num) {
 		case 1:
 			System.out.println("주문 전체 목록");
 			for (BookOrder bookorder : alllist) {
-				System.out.println("주문 카트번호 :" + bookorder.getCartno() + " 주문번호 :" + bookorder.getOrderno() + " 주문일자 :" + bookorder.getOrder_date() + " 주소 :" + bookorder.getAddr());
+				System.out.println("주문 카트번호 :" + bookorder.getCartno() + " 주문번호 :" + bookorder.getOrderno() + " 주문일자 :"
+						+ bookorder.getOrder_date() + " 주소 :" + bookorder.getAddr());
 			}
 		case 2:
 			System.out.println("주문 도서 리스트 확인");
 			for (BookOrderDetail bookorderdetail : bodlist) {
-				System.out.println("책 제목 :" + bookorderdetail.getName() + " 가격 :" + bookorderdetail.getPrice() +" 주문번호 :"+ bookorderdetail.getOrderNum() + "배송지" + bookorderdetail.getAddress() +" 주문 일자 :"+ bookorderdetail.getOrder_date());
+				System.out.println("책 제목 :" + bookorderdetail.getName() + " 가격 :" + bookorderdetail.getPrice()
+						+ " 주문번호 :" + bookorderdetail.getOrderNum() + "배송지" + bookorderdetail.getAddress() + " 주문 일자 :"
+						+ bookorderdetail.getOrder_date());
 			}
 			break;
 
 		default:
 			break;
 		}
-		
 
 	}
 
