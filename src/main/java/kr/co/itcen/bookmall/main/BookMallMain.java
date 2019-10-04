@@ -37,13 +37,15 @@ public class BookMallMain {
 		BookMallMain book = new BookMallMain();
 		//book.init();
 		
-		System.out.println("************************************************************");
-		System.out.println("***************************태영 서점***************************");
-		System.out.println("************************************************************");
+		System.out.println("********************************************************************************************************");
+		System.out.println("***********************************************태영 서점***************************************************");
+		System.out.println("********************************************************************************************************");
 
 		// Scanner scanner = new Scanner(System.in);
 
 		while (true) {
+			System.out.println();
+			System.out.println("********************************************************************************************************");
 			System.out.println(
 					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
 			
@@ -51,7 +53,8 @@ public class BookMallMain {
 			// No Such ElemntException
 			// 이 지속적으로 발생한다.
 			// 해결방법을 고민해봐야 한다.
-			//num = Integer.parseInt(numStr);
+			// 해결!!! - 각 메소드에서 Close해준 것을 해지함.
+
 			
 			switch (num) {
 				case 1:
@@ -177,7 +180,7 @@ public class BookMallMain {
 		System.out.println("회원가입 완료!!!");
 
 		dao.memberInsert(member);
-		scanner.close();
+
 	}
 	/////////////////////
 
@@ -230,7 +233,7 @@ public class BookMallMain {
 			}
 		}
 
-		scanner.close();
+		
 	}
 	/////////////////////
 
@@ -274,7 +277,7 @@ public class BookMallMain {
 			break;
 		}
 
-		scanner.close();
+	
 	}
 	/////////////////////
 
@@ -338,7 +341,7 @@ public class BookMallMain {
 
 		cdao.cartInsertDao(cart);
 		System.out.println(list.get(memnum).getUserid() + " 회원카트 담기 성공!!!");
-		scanner.close();
+		
 	}
 
 	// 5. 카트 목록 출력
@@ -387,7 +390,7 @@ public class BookMallMain {
 			break;
 		}
 
-		scanner.close();
+	
 	}
 	/////////////////////
 
@@ -452,7 +455,7 @@ public class BookMallMain {
 		}
 
 
-		scanner.close();
+		
 	}
 	/////////////////////
 
