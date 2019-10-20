@@ -8,7 +8,6 @@ package kr.co.itcen.bookmall.vo;
  * price - int   - 책 가격
  * maincate - String - 대분류 - 외래키
  * midcate - String  - 중분류 - 외래키
- * 
  */
 
 public class Book {

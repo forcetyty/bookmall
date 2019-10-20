@@ -87,62 +87,13 @@ public class BookMallMain {
 				break;
 			}
 		}
-
 	}
-
-	// 초기화
-	public void init() {
-//		System.out.println("************************************************************");
-//		System.out.println("***************************태영 서점***************************");
-//		System.out.println("************************************************************");
-//
-//		// Scanner scanner = new Scanner(System.in);
-//
-//		while (true) {
-//			System.out.println(
-//					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
-//			
-//			num = scan.nextInt();
-//			switch (num) {
-//			case 1:
-//				memberDaoTestInsert();
-//				break;
-//			case 2:
-//				memberDaoTest();
-//				break;
-//			case 3:
-//				categoryDaoTest();
-//				break;
-//			case 4:
-//				bookDaoTest();
-//				break;
-//			case 5:
-//				cartDaoTest();
-//				break;
-//			case 6:
-//				cartDaoTestPrint();
-//				break;
-//			case 7:
-//				cartOrder();
-//				break;
-//			case 8:
-//				OrderDaoTest();
-//				break;
-//			}
-//
-//			if (num == 9) {
-//				System.out.println("프로그램 종료");
-//				break;
-//			}
-//		}
-		// scanner.close();
-	}
+	/////////////////////
 
 	// 회원가입하는 테이블
+	//  no - 기본키 - 자동증가 name - 이름 pnumber - 핸드폰 번호 email - 이메일 password - 비밀번호
 	public void memberDaoTestInsert() {
-		/*
-		 * no - 기본키 - 자동증가 name - 이름 pnumber - 핸드폰 번호 email - 이메일 password - 비밀번호
-		 */
+		 
 		Scanner scanner = new Scanner(System.in);
 		MemberDao dao = new MemberDao();
 		Member member = new Member();
@@ -184,6 +135,7 @@ public class BookMallMain {
 	}
 	/////////////////////
 
+	
 	// 회원리스트를 출력하는 메소드
 	public void memberDaoTest() {
 		MemberDao dao = new MemberDao();
@@ -197,6 +149,7 @@ public class BookMallMain {
 	}
 	///////////////////////
 
+	
 	// 카테고리를 출력하는 메소드
 	public void categoryDaoTest() {
 		// 대분류 - 몇개가 있는지 출력
@@ -232,11 +185,10 @@ public class BookMallMain {
 				System.out.println("대분류 :" + cat.getMaincate() + ":" + "중분류 :" + cat.getMidcate());
 			}
 		}
-
-		
 	}
 	/////////////////////
 
+	
 	// 도서목록을 출력하는 메소드
 	// 책 코드 분류 기준!!!
 	// 코드 표!!!
@@ -276,11 +228,10 @@ public class BookMallMain {
 		default:
 			break;
 		}
-
-	
 	}
 	/////////////////////
 
+	
 	// 카트 리스트 확인
 	// Process
 	// 1. 아이디 선택 - 해결
@@ -340,9 +291,10 @@ public class BookMallMain {
 		cart.setNum(vec.elementAt(2));
 
 		cdao.cartInsertDao(cart);
-		System.out.println(list.get(memnum).getUserid() + " 회원카트 담기 성공!!!");
-		
+		System.out.println(list.get(memnum).getUserid() + " 회원카트 담기 성공!!!");	
 	}
+	/////////////////////
+	
 
 	// 5. 카트 목록 출력
 	// a. 카트 전체 목록 출력
@@ -389,10 +341,9 @@ public class BookMallMain {
 		default:
 			break;
 		}
-
-	
 	}
 	/////////////////////
+	
 
 	// cartOrder
 	// 카트에 있는 목록을 실제 주문하도록 하는 기능을 갖고 있음
@@ -453,11 +404,9 @@ public class BookMallMain {
 		} else {
 			System.out.println("주문을 취소하셨습니다.");
 		}
-
-
-		
 	}
 	/////////////////////
+	
 
 	// 주문 테이블에 있는 정보를 출력하는 메소드
 	public void OrderDaoTest() {
@@ -496,5 +445,5 @@ public class BookMallMain {
 		}
 
 	}
-
+	/////////////////////
 }
