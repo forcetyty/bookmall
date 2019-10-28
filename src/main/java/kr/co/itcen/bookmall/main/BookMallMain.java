@@ -26,6 +26,7 @@ import kr.co.itcen.bookmall.vo.Member;
  * - 3. BookDaoTest
  * - 4. CartDaoTest
  * - 5. OrderDaoTest
+ * - 추가 발전사항 - 관리자 기능을 구현!!!
  */
 public class BookMallMain {
 	static Scanner scan = new Scanner(System.in);
