@@ -36,19 +36,19 @@ public class BookMallMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BookMallMain book = new BookMallMain();
+		BookMallAdmin admin = new BookMallAdmin();
 		//book.init();
 		
 		System.out.println("********************************************************************************************************");
 		System.out.println("***********************************************태영 서점***************************************************");
 		System.out.println("********************************************************************************************************");
 
-		// Scanner scanner = new Scanner(System.in);
-
+		// 태영서점에 메뉴가 지속적으로 반독 될 수 있도록 해주는 것!!!
 		while (true) {
 			System.out.println();
 			System.out.println("********************************************************************************************************");
 			System.out.println(
-					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
+					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료 10. 관리자 로그인");
 			
 			num = scan.nextInt();	
 			// No Such ElemntException
@@ -56,7 +56,8 @@ public class BookMallMain {
 			// 해결방법을 고민해봐야 한다.
 			// 해결!!! - 각 메소드에서 Close해준 것을 해지함.
 
-			
+			// "1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
+			// 선택사항이 아래 메소드를 실행
 			switch (num) {
 				case 1:
 					book.memberDaoTestInsert();
@@ -82,6 +83,8 @@ public class BookMallMain {
 				case 8:
 					book.OrderDaoTest();
 					break;
+				case 10:
+					admin.loginProcess();
 				}
 			if (num == 9) {
 				System.out.println("프로그램 종료");
@@ -135,8 +138,6 @@ public class BookMallMain {
 
 	}
 	/////////////////////
-
-	
 	// 회원리스트를 출력하는 메소드
 	public void memberDaoTest() {
 		MemberDao dao = new MemberDao();
@@ -166,25 +167,24 @@ public class BookMallMain {
 		int num = scanner.nextInt();
 
 		switch (num) {
-		
-		case 1:
-			list = dao.mainCatePrint();
-			for (Category cat : list) {
-				System.out.println("대분류 :" + cat.getMaincate() + "  전체 :" + cat.getCountnum());
-			}
-			break;
-
-		case 2:
-			list = dao.midCatePrint();
-			for (Category cat : list) {
-				System.out.println("중분류 :" + cat.getMidcate());
-			}
-			break;
-		case 3:
-			list = dao.totalPrint();
-			for (Category cat : list) {
-				System.out.println("대분류 :" + cat.getMaincate() + ":" + "중분류 :" + cat.getMidcate());
-			}
+			case 1:
+				list = dao.mainCatePrint();
+				for (Category cat : list) {
+					System.out.println("대분류 :" + cat.getMaincate() + "  전체 :" + cat.getCountnum());
+				}
+				break;
+	
+			case 2:
+				list = dao.midCatePrint();
+				for (Category cat : list) {
+					System.out.println("중분류 :" + cat.getMidcate());
+				}
+				break;
+			case 3:
+				list = dao.totalPrint();
+				for (Category cat : list) {
+					System.out.println("대분류 :" + cat.getMaincate() + ":" + "중분류 :" + cat.getMidcate());
+				}
 		}
 	}
 	/////////////////////
@@ -208,26 +208,26 @@ public class BookMallMain {
 		int num = scanner.nextInt();
 
 		switch (num) {
-		case 1:
-			System.out.println("카테고리 별 책 수량 출력");
-			list = dao.bookCatePrintDao();
-
-			for (Book book : list) {
-				System.out.println(
-						"대분류 :" + book.getMaincate() + " 중분류 :" + book.getMidcate() + " 책 수량 :" + book.getCount());
-			}
-			break;
-		case 2:
-			System.out.println("책 전체 목록 출력");
-			list = dao.bookPrintDao();
-			for (Book book : list) {
-				System.out.println("isbn :" + book.getIsbn() + " 책 이름 :" + book.getName() + " 책 가격 :" + book.getPrice()
-						+ " 대분류 : " + book.getMaincate() + " 중분류 : " + book.getMidcate());
-			}
-			break;
-
-		default:
-			break;
+			case 1:
+				System.out.println("카테고리 별 책 수량 출력");
+				list = dao.bookCatePrintDao();
+	
+				for (Book book : list) {
+					System.out.println(
+							"대분류 :" + book.getMaincate() + " 중분류 :" + book.getMidcate() + " 책 수량 :" + book.getCount());
+				}
+				break;
+			case 2:
+				System.out.println("책 전체 목록 출력");
+				list = dao.bookPrintDao();
+				for (Book book : list) {
+					System.out.println("isbn :" + book.getIsbn() + " 책 이름 :" + book.getName() + " 책 가격 :" + book.getPrice()
+							+ " 대분류 : " + book.getMaincate() + " 중분류 : " + book.getMidcate());
+				}
+				break;
+	
+			default:
+				break;
 		}
 	}
 	/////////////////////
