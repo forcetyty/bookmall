@@ -7,6 +7,10 @@ import kr.co.itcen.bookmall.dao.MemberDao;
 import kr.co.itcen.bookmall.vo.Member;
 
 // BookMall 관리자 화면!!!
+// 관리자 기능
+// 1. 회원 삭제 기능
+// 2. 회원별 책 구매 내역 확인
+// 3. 월별 책 판매량 확인
 public class BookMallAdmin {
 	private String ID = "admin";
 	private String PW = "1234";
@@ -66,6 +70,13 @@ public class BookMallAdmin {
 			System.out.println("유저 아이디 :" + member.getUserid() + " 이름 :" + member.getName() + " 핸드폰 번호 :"
 					+ member.getPnumber() + " 이메일 주소 :" + member.getEmail());
 		}
+	}
+	///////////////////////
+	
+	///////////////////////
+	//회원을 삭제하는 기능
+	public void memberDelete() {
+		
 	}
 	///////////////////////
 

@@ -48,7 +48,7 @@ public class BookMallMain {
 			System.out.println();
 			System.out.println("********************************************************************************************************");
 			System.out.println(
-					"1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료 10. 관리자 로그인");
+					"1. 회원가입  2. 카테고리 출력  3. 상품리스트  4. 카트추가  5. 카트 목록보기  6. 카트 주문  7. 카트목록보기 8.종료 9. 관리자 로그인");
 			
 			num = scan.nextInt();	
 			// No Such ElemntException
@@ -61,32 +61,29 @@ public class BookMallMain {
 			switch (num) {
 				case 1:
 					book.memberDaoTestInsert();
-					break;
+					break;		
 				case 2:
-					book.memberDaoTest();
-					break;
-				case 3:
 					book.categoryDaoTest();
 					break;
-				case 4:
+				case 3:
 					book.bookDaoTest();
 					break;
-				case 5:
+				case 4:
 					book.cartDaoTest();
 					break;
-				case 6:
+				case 5:
 					book.cartDaoTestPrint();
 					break;
-				case 7:
+				case 6:
 					book.cartOrder();
 					break;
-				case 8:
+				case 7:
 					book.OrderDaoTest();
 					break;
-				case 10:
+				case 9:
 					admin.loginProcess();
 				}
-			if (num == 9) {
+			if (num == 8) {
 				System.out.println("프로그램 종료");
 				break;
 			}
@@ -99,6 +96,7 @@ public class BookMallMain {
 	public void memberDaoTestInsert() {
 		 
 		Scanner scanner = new Scanner(System.in);
+		
 		MemberDao dao = new MemberDao();
 		Member member = new Member();
 
