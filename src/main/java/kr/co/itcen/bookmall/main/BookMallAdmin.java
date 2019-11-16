@@ -55,8 +55,6 @@ public class BookMallAdmin {
 		default:
 			break;
 		}
-		
-		
 	}
 
 	/////////////////////
@@ -76,6 +74,17 @@ public class BookMallAdmin {
 	///////////////////////
 	//회원을 삭제하는 기능
 	public void memberDelete() {
+		String id = null;
+		
+		MemberDao dao = new MemberDao();
+		
+		System.out.println("삭제할 ID를 입력 : ");
+		id = scan.next();
+		
+		dao.memberDeleteDao(id);
+		System.out.println(id + "님의 회원 정보가 삭제되었습니다.");
+		
+		
 		
 	}
 	///////////////////////

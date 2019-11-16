@@ -10,7 +10,6 @@ import java.util.List;
 import kr.co.itcen.bookmall.service.ServiceUtil;
 import kr.co.itcen.bookmall.vo.Member;
 
-
 /* member Table 구조
  * no - 기본키 - Auto
  * name - 이름 - String
@@ -73,11 +72,11 @@ public class MemberDao {
 		try {
 			con = ServiceUtil.getConnection();
 			String sql = "select userid, password, name, number, email from member";
-			
+
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-			//데이터베이스에 있는 Row를 돌며 VO 객체를 통해 접근
+			// 데이터베이스에 있는 Row를 돌며 VO 객체를 통해 접근
 			while (rs.next()) {
 				String id = rs.getString(1);
 				String pass = rs.getString(2);
@@ -121,6 +120,47 @@ public class MemberDao {
 		}
 
 		return list;
+	}
+
+	// 회원을 삭제하는 Dao
+	public void memberDeleteDao(String id) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ServiceUtil.getConnection();
+			String sql = "delete from member where id = ?";
+
+			pstmt.setString(1, id);
+
+			pstmt.execute();
+			con.commit();
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println("error :" + e);
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("close error :" + e);
+			}
+		}
+
 	}
 
 }
