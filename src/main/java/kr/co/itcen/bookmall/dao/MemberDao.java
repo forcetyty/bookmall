@@ -131,8 +131,9 @@ public class MemberDao {
 
 		try {
 			con = ServiceUtil.getConnection();
-			String sql = "delete from member where id = ?";
-
+			String sql = "delete from member where userid = ?";
+			pstmt = con.prepareStatement(sql);
+			
 			pstmt.setString(1, id);
 
 			pstmt.execute();

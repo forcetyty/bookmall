@@ -8,7 +8,7 @@ import kr.co.itcen.bookmall.vo.Member;
 
 // BookMall 관리자 화면!!!
 // 관리자 기능
-// 1. 회원 삭제 기능
+// 1. 회원 삭제 기능			- 완료
 // 2. 회원별 책 구매 내역 확인
 // 3. 월별 책 판매량 확인
 public class BookMallAdmin {
@@ -45,13 +45,16 @@ public class BookMallAdmin {
 	public void adminProcess() {
 		int choice = 0;
 		
-		System.out.println("1. 회원정보 출력");
+		System.out.println("1. 회원정보 출력 2. 회원 삭제");
 		choice = scan.nextInt();
 		
 		switch (choice) {
 		case 1:
 			memberDaoTest();
 			break;
+		case 2:
+			memberDaoTest();
+			memberDelete();
 		default:
 			break;
 		}
@@ -81,12 +84,18 @@ public class BookMallAdmin {
 		System.out.println("삭제할 ID를 입력 : ");
 		id = scan.next();
 		
-		dao.memberDeleteDao(id);
+		dao.memberDeleteDao(id.trim());
+		
 		System.out.println(id + "님의 회원 정보가 삭제되었습니다.");
-		
-		
 		
 	}
 	///////////////////////
+	
+	///////////////////////
+	// 회원별 책 구매내역 확인
+	public void memberBookOrderCheck() {
+		
+	}
+
 
 }
