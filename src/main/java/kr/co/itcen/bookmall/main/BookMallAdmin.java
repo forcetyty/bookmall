@@ -12,6 +12,7 @@ import kr.co.itcen.bookmall.vo.Member;
 // 2. 회원별 책 구매 내역 확인
 // 3. 월별 책 판매량 확인
 public class BookMallAdmin {
+	
 	private String ID = "admin";
 	private String PW = "1234";
 
@@ -94,8 +95,10 @@ public class BookMallAdmin {
 	///////////////////////
 	// 회원별 책 구매내역 확인
 	public void memberBookOrderCheck() {
+		// member와 cart, bookorder를 기반으로 데이터를 가져와야함.
+		
 		
 	}
-
+	///////////////////////
 
 }

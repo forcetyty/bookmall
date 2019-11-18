@@ -1,6 +1,6 @@
 package kr.co.itcen.bookmall.main;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
@@ -11,7 +11,7 @@ import kr.co.itcen.bookmall.dao.CategoryDao;
 import kr.co.itcen.bookmall.dao.MemberDao;
 import kr.co.itcen.bookmall.dao.OrderDao;
 import kr.co.itcen.bookmall.vo.Book;
-import kr.co.itcen.bookmall.vo.BookCartVo;
+
 import kr.co.itcen.bookmall.vo.BookOrder;
 import kr.co.itcen.bookmall.vo.BookOrderDetail;
 import kr.co.itcen.bookmall.vo.Cart;

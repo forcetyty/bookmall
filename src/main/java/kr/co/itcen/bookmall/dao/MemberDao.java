@@ -161,7 +161,11 @@ public class MemberDao {
 				System.out.println("close error :" + e);
 			}
 		}
-
+	}
+	
+	// 회원별 책 구매 목록을 출력 Dao
+	public void memberBookOrderList() {
+		
 	}
 
 }
