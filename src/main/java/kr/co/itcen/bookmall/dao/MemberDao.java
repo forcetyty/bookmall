@@ -9,6 +9,7 @@ import java.util.List;
 
 import kr.co.itcen.bookmall.service.ServiceUtil;
 import kr.co.itcen.bookmall.vo.Member;
+import kr.co.itcen.bookmall.vo.MemberOrder;
 
 /* member Table 구조
  * no - 기본키 - Auto
@@ -133,7 +134,7 @@ public class MemberDao {
 			con = ServiceUtil.getConnection();
 			String sql = "delete from member where userid = ?";
 			pstmt = con.prepareStatement(sql);
-			
+
 			pstmt.setString(1, id);
 
 			pstmt.execute();
@@ -162,10 +163,68 @@ public class MemberDao {
 			}
 		}
 	}
-	
+
 	// 회원별 책 구매 목록을 출력 Dao
-	public void memberBookOrderList() {
-		
+	public List<MemberOrder> memberBookOrderList(String id) {
+
+		List<MemberOrder> list = new ArrayList<MemberOrder>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ServiceUtil.getConnection();
+			String sql = "select b.name, t.orderno, t.userid from book b,"
+					+ "(select c.orderno, c.isbn, c.userid from cart c, bookorder bo"
+					+ "where c.orderno = bo.orderno) as t" + "where t.isbn = b.no and t.userid = ?";
+
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, id);
+			pstmt.executeQuery();
+			
+			// 데이터베이스에 있는 Row를 돌며 VO 객체를 통해 접근
+			while (rs.next()) {
+				
+				String name = rs.getString(1);
+				int orderno = rs.getInt(2);
+				String userid = rs.getString(3);
+				
+				MemberOrder morder = new MemberOrder();
+
+				morder.setUserid(userid);
+				morder.setOrderno(orderno);
+				morder.setName(name);
+			
+				list.add(morder);
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println("error :" + e);
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("close error :" + e);
+			}
+
+		}
+
+		return list;
 	}
 
 }
