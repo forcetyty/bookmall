@@ -180,9 +180,8 @@ public class MemberDao {
 					+ "where c.orderno = bo.orderno) as t" + "where t.isbn = b.no and t.userid = ?";
 
 			pstmt = con.prepareStatement(sql);
-
 			pstmt.setString(1, id);
-			pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
 			// 데이터베이스에 있는 Row를 돌며 VO 객체를 통해 접근
 			while (rs.next()) {

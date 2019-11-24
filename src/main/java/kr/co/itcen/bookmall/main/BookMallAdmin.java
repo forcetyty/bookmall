@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import kr.co.itcen.bookmall.dao.MemberDao;
 import kr.co.itcen.bookmall.vo.Member;
+import kr.co.itcen.bookmall.vo.MemberOrder;
 
 // BookMall 관리자 화면!!!
 // 관리자 기능
@@ -96,7 +97,24 @@ public class BookMallAdmin {
 	// 회원별 책 구매내역 확인
 	public void memberBookOrderCheck() {
 		// member와 cart, bookorder를 기반으로 데이터를 가져와야함.
+		// 회원 목록 출력
+		String id = null;
+		MemberDao dao = new MemberDao();
+		List<Member> list = dao.memberList();
 		
+		for (Member member : list) {
+			System.out.println("유저 아이디 :" + member.getUserid() + " 이름 :" + member.getName() + " 핸드폰 번호 :"
+					+ member.getPnumber() + " 이메일 주소 :" + member.getEmail());
+		}
+		
+		System.out.println("----------회원별 책 구매내역 확인----------");
+		System.out.print("아이디 입력 : ");
+		id = scan.next().trim();
+		List<MemberOrder> mlist = dao.memberBookOrderList(id);
+		
+		for(MemberOrder morder : mlist) {
+			System.out.println("유저 아이디" + morder.getUserid() + "책 이름 :" + morder.getName() + "주문번호 :" + morder.getOrderno());
+		}
 		
 	}
 	///////////////////////
