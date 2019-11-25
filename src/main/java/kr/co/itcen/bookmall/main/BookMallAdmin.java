@@ -13,12 +13,12 @@ import kr.co.itcen.bookmall.vo.MemberOrder;
 // 2. 회원별 책 구매 내역 확인
 // 3. 월별 책 판매량 확인
 public class BookMallAdmin {
-	
+
 	private String ID = "admin";
 	private String PW = "1234";
 
 	private Scanner scan = new Scanner(System.in);
-	
+
 	/////////////////////
 	// 관리자 로그인 처리 Process
 	public void loginProcess() {
@@ -41,22 +41,26 @@ public class BookMallAdmin {
 		}
 	}
 	/////////////////////
-	
+
 	/////////////////////
 	// 로그인된 관리자 처리 Process
 	public void adminProcess() {
 		int choice = 0;
-		
-		System.out.println("1. 회원정보 출력 2. 회원 삭제");
+
+		System.out.println("1. 회원정보 출력 2. 회원별 구매 목록 확인 3. 회원 삭제");
 		choice = scan.nextInt();
-		
+
 		switch (choice) {
 		case 1:
 			memberDaoTest();
 			break;
 		case 2:
+			memberBookOrderCheck();
+			break;
+		case 3:
 			memberDaoTest();
 			memberDelete();
+			break;
 		default:
 			break;
 		}
@@ -75,24 +79,24 @@ public class BookMallAdmin {
 		}
 	}
 	///////////////////////
-	
+
 	///////////////////////
-	//회원을 삭제하는 기능
+	// 회원을 삭제하는 기능
 	public void memberDelete() {
 		String id = null;
-		
+
 		MemberDao dao = new MemberDao();
-		
+
 		System.out.println("삭제할 ID를 입력 : ");
 		id = scan.next();
-		
+
 		dao.memberDeleteDao(id.trim());
-		
+
 		System.out.println(id + "님의 회원 정보가 삭제되었습니다.");
-		
+
 	}
 	///////////////////////
-	
+
 	///////////////////////
 	// 회원별 책 구매내역 확인
 	public void memberBookOrderCheck() {
@@ -101,21 +105,23 @@ public class BookMallAdmin {
 		String id = null;
 		MemberDao dao = new MemberDao();
 		List<Member> list = dao.memberList();
-		
+
 		for (Member member : list) {
 			System.out.println("유저 아이디 :" + member.getUserid() + " 이름 :" + member.getName() + " 핸드폰 번호 :"
 					+ member.getPnumber() + " 이메일 주소 :" + member.getEmail());
 		}
-		
+
 		System.out.println("----------회원별 책 구매내역 확인----------");
 		System.out.print("아이디 입력 : ");
 		id = scan.next().trim();
+		
 		List<MemberOrder> mlist = dao.memberBookOrderList(id);
-		
-		for(MemberOrder morder : mlist) {
-			System.out.println("유저 아이디" + morder.getUserid() + "책 이름 :" + morder.getName() + "주문번호 :" + morder.getOrderno());
+
+		for (MemberOrder morder : mlist) {
+			System.out.println(
+					"유저 아이디" + morder.getUserid() + "주문 번호"+ morder.getOrderno() + "책 이름 :" + morder.getName() + "주문번호 :" + morder.getOrder_date());
 		}
-		
+
 	}
 	///////////////////////
 

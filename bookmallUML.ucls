@@ -1,72 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="kr.co.itcen.bookmall.main.BookMallAdmin" project="bookmall" 
-    file="/bookmall/src/main/java/kr/co/itcen/bookmall/main/BookMallAdmin.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="119" x="204" y="25"/>    
+  <class id="1" language="java" name="kr.co.itcen.bookmall.vo.Member" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/vo/Member.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="150" x="593" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="kr.co.itcen.bookmall.main.BookMallMain" project="bookmall" 
-    file="/bookmall/src/main/java/kr/co/itcen/bookmall/main/BookMallMain.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="161" x="363" y="25"/>    
+  <class id="2" language="java" name="kr.co.itcen.bookmall.vo.Cart" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/vo/Cart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="147" x="783" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="kr.co.itcen.bookmall.dao.BookDao" project="bookmall" 
-    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/BookDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="175" x="818" y="104"/>    
+  <class id="3" language="java" name="kr.co.itcen.bookmall.vo.Category" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/vo/Category.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="148" x="970" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="kr.co.itcen.bookmall.dao.CategoryDao" project="bookmall" 
-    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/CategoryDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="175" x="1033" y="104"/>    
+  <class id="4" language="java" name="kr.co.itcen.bookmall.vo.BookCartVo" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/vo/BookCartVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="147" x="1158" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="kr.co.itcen.bookmall.dao.OrderDao" project="bookmall" 
-    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/OrderDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="248" x="1248" y="104"/>    
+  <class id="5" language="java" name="kr.co.itcen.bookmall.vo.BookOrder" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/vo/BookOrder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="155" x="1345" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="kr.co.itcen.bookmall.dao.CartDao" project="bookmall" 
-    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/CartDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="267" x="1536" y="104"/>    
+  <class id="6" language="java" name="kr.co.itcen.bookmall.vo.MemberOrder" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/vo/MemberOrder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="155" x="1540" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="kr.co.itcen.bookmall.dao.MemberDao" project="bookmall" 
-    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="160" x="1843" y="104"/>    
+  <class id="7" language="java" name="kr.co.itcen.bookmall.vo.BookOrderDetail" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/vo/BookOrderDetail.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="155" x="1735" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="kr.co.itcen.bookmall.service.ServiceUtil" project="bookmall" 
+  <class id="8" language="java" name="kr.co.itcen.bookmall.vo.Book" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/vo/Book.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="143" x="1930" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="kr.co.itcen.bookmall.service.ServiceUtil" project="bookmall" 
     file="/bookmall/src/main/java/kr/co/itcen/bookmall/service/ServiceUtil.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="160" x="721" y="293"/>    
+    <position height="-1" width="-1" x="497" y="383"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="kr.co.itcen.bookmall.main.BookMallAdmin" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/main/BookMallAdmin.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="285" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="kr.co.itcen.bookmall.main.BookMallMain" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/main/BookMallMain.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="494" y="174"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="kr.co.itcen.bookmall.dao.BookDao" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/BookDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="101" y="85"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="kr.co.itcen.bookmall.dao.CategoryDao" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/CategoryDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="102" y="224"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="kr.co.itcen.bookmall.dao.OrderDao" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/OrderDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="140" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="kr.co.itcen.bookmall.dao.CartDao" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/CartDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="149" y="539"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="kr.co.itcen.bookmall.dao.MemberDao" project="bookmall" 
+    file="/bookmall/src/main/java/kr/co/itcen/bookmall/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="147" y="720"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

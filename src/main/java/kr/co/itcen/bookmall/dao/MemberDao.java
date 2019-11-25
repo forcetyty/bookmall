@@ -175,9 +175,7 @@ public class MemberDao {
 
 		try {
 			con = ServiceUtil.getConnection();
-			String sql = "select b.name, t.orderno, t.userid from book b,"
-					+ "(select c.orderno, c.isbn, c.userid from cart c, bookorder bo"
-					+ "where c.orderno = bo.orderno) as t" + "where t.isbn = b.no and t.userid = ?";
+			String sql = "select t.userid, t.orderno, t.order_date, b.name from book b, (select c.userid, bo.orderno, bo.order_date, bo.isbn from bookorder bo, cart c where bo.cartno = c.cartno) as t where b.isbn = t.isbn and t.userid = ?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -186,16 +184,18 @@ public class MemberDao {
 			// 데이터베이스에 있는 Row를 돌며 VO 객체를 통해 접근
 			while (rs.next()) {
 				
-				String name = rs.getString(1);
+				String userid = rs.getString(1);
 				int orderno = rs.getInt(2);
-				String userid = rs.getString(3);
+				String order_date = rs.getString(3);
+				String name = rs.getString(4);
 				
 				MemberOrder morder = new MemberOrder();
 
 				morder.setUserid(userid);
 				morder.setOrderno(orderno);
+				morder.setOrder_date(order_date);
 				morder.setName(name);
-			
+		
 				list.add(morder);
 			}
 

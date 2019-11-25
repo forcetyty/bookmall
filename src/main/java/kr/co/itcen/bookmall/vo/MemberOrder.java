@@ -1,10 +1,19 @@
 package kr.co.itcen.bookmall.vo;
 
 public class MemberOrder {
-
+// userid orderno order_date name
 	private String userid;
-	private String name;
 	private int orderno;
+	private String order_date;
+	private String name;
+
+	public String getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(String order_date) {
+		this.order_date = order_date;
+	}
 
 	public String getUserid() {
 		return userid;
@@ -32,7 +41,8 @@ public class MemberOrder {
 
 	@Override
 	public String toString() {
-		return "MemberOrder [userid=" + userid + ", name=" + name + ", orderno=" + orderno + "]";
+		return "MemberOrder [userid=" + userid + ", orderno=" + orderno + ", order_date=" + order_date + ", name="
+				+ name + "]";
 	}
 
 }
