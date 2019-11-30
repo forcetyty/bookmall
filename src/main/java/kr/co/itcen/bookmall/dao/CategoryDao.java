@@ -10,21 +10,16 @@ import java.util.List;
 import kr.co.itcen.bookmall.service.ServiceUtil;
 import kr.co.itcen.bookmall.vo.Category;
 
-/*
- * 추후 발전
- * 비슷한 구조를 가지고 있기 떄문에
- * 인자로 sql 문장을 구분해주는 코드를 구현하면
- * 코드의 중복을 막을수 있을 듯하다!!!
- */
+
 public class CategoryDao {
 
 	// 대분류를 가져오는 Dao
 	public List<Category> mainCatePrint() {
 		List<Category> list = new ArrayList<Category>();
 
-		Connection con = null; // 연결객체
+		Connection con = null; 			// 연결객체
 		PreparedStatement pstmt = null; // 운반객체
-		ResultSet rs = null; // 결과
+		ResultSet rs = null;		    // 결과
 
 		try {
 			con = ServiceUtil.getConnection();
@@ -69,14 +64,15 @@ public class CategoryDao {
 		}
 		return list;
 	}
+	//////////////
 
 	// 중분류를 가져오는 Dao
 	public List<Category> midCatePrint() {
 		List<Category> list = new ArrayList<Category>();
 
-		Connection con = null; // 연결객체
+		Connection con = null;          // 연결객체
 		PreparedStatement pstmt = null; // 운반객체
-		ResultSet rs = null; // 결과
+		ResultSet rs = null;            // 결과
 
 		try {
 			con = ServiceUtil.getConnection();
@@ -120,6 +116,7 @@ public class CategoryDao {
 
 		return list;
 	}
+	//////////////
 
 	// 전체 분류를 가져오는 Dao
 	public List<Category> totalPrint() {
@@ -173,5 +170,6 @@ public class CategoryDao {
 
 		return list;
 	}
+	//////////////
 
 }

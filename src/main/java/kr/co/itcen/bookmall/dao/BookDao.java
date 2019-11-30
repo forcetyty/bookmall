@@ -10,23 +10,15 @@ import java.util.List;
 import kr.co.itcen.bookmall.service.ServiceUtil;
 import kr.co.itcen.bookmall.vo.Book;
 
-/*
- * isbm - String - 책 고유 식별번호
- * name - String - 책 이름
- * price - int   - 책 가격
- * maincate - String - 대분류 - 외래키
- * midcate - String  - 중분류 - 외래키
- * 
- */
 public class BookDao {
 
-	// Book list All print Method
+	// 전체 책 목록을 출력하는 Dao
 	public List<Book> bookPrintDao() {
 		List<Book> list = new ArrayList<Book>();
 
-		Connection con = null; // 연결객체
+		Connection con = null; 			// 연결객체
 		PreparedStatement pstmt = null; // 운반객체
-		ResultSet rs = null; // 결과
+		ResultSet rs = null; 			// 결과
 
 		try {
 			con = ServiceUtil.getConnection();
@@ -78,14 +70,15 @@ public class BookDao {
 		}
 		return list;
 	}
+	//////////////
 
 	// Category 별 책 수량 확인 출력 Dao
 	public List<Book> bookCatePrintDao() {
 		List<Book> list = new ArrayList<Book>();
 
-		Connection con = null; // 연결객체
+		Connection con = null; 			// 연결객체
 		PreparedStatement pstmt = null; // 운반객체
-		ResultSet rs = null; // 결과
+		ResultSet rs = null; 			// 결과
 
 		try {
 			con = ServiceUtil.getConnection();
@@ -133,7 +126,6 @@ public class BookDao {
 		}
 		return list;
 	}
+	//////////////
 	
-	
-
 }

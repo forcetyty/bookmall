@@ -11,16 +11,10 @@ import kr.co.itcen.bookmall.service.ServiceUtil;
 import kr.co.itcen.bookmall.vo.Member;
 import kr.co.itcen.bookmall.vo.MemberOrder;
 
-/* member Table 구조
- * no - 기본키 - Auto
- * name - 이름 - String
- * pnumber - 핸드폰 번호 - int
- * email - 이메일 - String
- * password - 비밀번호 - String
- */
 
 public class MemberDao {
 
+	// 회원가입을 가능하게 하는 Dao
 	public void memberInsert(Member member) {
 
 		Connection con = null;
@@ -61,8 +55,9 @@ public class MemberDao {
 			}
 		}
 	}
+	//////////////
 
-	// DataBase에서 회원테이블에 대한 정보를 가져오는 메소드
+	// DataBase에서 회원테이블에 대한 정보를 가져오는 Dao
 	public List<Member> memberList() {
 		List<Member> list = new ArrayList<Member>();
 
@@ -122,6 +117,7 @@ public class MemberDao {
 
 		return list;
 	}
+	//////////////
 
 	// 회원을 삭제하는 Dao
 	public void memberDeleteDao(String id) {
@@ -163,6 +159,7 @@ public class MemberDao {
 			}
 		}
 	}
+	//////////////
 
 	// 회원별 책 구매 목록을 출력 Dao
 	public List<MemberOrder> memberBookOrderList(String id) {
@@ -220,10 +217,9 @@ public class MemberDao {
 				// TODO Auto-generated catch block
 				System.out.println("close error :" + e);
 			}
-
 		}
-
 		return list;
 	}
+	//////////////
 
 }

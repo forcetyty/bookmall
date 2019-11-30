@@ -8,26 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.itcen.bookmall.service.ServiceUtil;
-import kr.co.itcen.bookmall.vo.Book;
 import kr.co.itcen.bookmall.vo.BookCartVo;
 import kr.co.itcen.bookmall.vo.Cart;
 
 public class CartDao {
 
-	// 카트에 담는 메소드
+	// 카트에 담는 Dao
 	public void cartInsertDao(Cart cart) {
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		Connection con = null;				// 연결객체
+		PreparedStatement pstmt = null;		// 운반객체
 
 		try {
 			String sql = "insert into cart values(null,?,?,?, now(), null)";
 			con = ServiceUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, cart.getUserid()); // userid 입력
-			pstmt.setString(2, cart.getIsbn()); // 책 고유번호
-			pstmt.setInt(3, Integer.parseInt(cart.getNum())); // 책 수량
+			pstmt.setString(1, cart.getUserid()); 				// userid 입력
+			pstmt.setString(2, cart.getIsbn()); 			    // 책 고유번호
+			pstmt.setInt(3, Integer.parseInt(cart.getNum()));   // 책 수량
 
 			pstmt.execute();
 			con.commit();
@@ -55,13 +54,13 @@ public class CartDao {
 	}
 	//////////////
 
-	// 카트 전체 목록 출력
+	// 카트 전체 목록 출력 Dao
 	public List<Cart> cartPrintDao() {
 		List<Cart> list = new ArrayList<Cart>();
 
-		Connection con = null; // 연결객체
+		Connection con = null;          // 연결객체
 		PreparedStatement pstmt = null; // 운반객체
-		ResultSet rs = null; // 결과
+		ResultSet rs = null;            // 결과
 
 		try {
 			con = ServiceUtil.getConnection();
@@ -113,13 +112,13 @@ public class CartDao {
 	}
 	//////////////
 
-	// 카트 회원 전체 카트 수량 출력
+	// 카트 회원 전체 카트 수량 출력 Dao
 	public List<Cart> cartMemberPrintDao() {
 		List<Cart> list = new ArrayList<Cart>();
 
-		Connection con = null; // 연결객체
+		Connection con = null;          // 연결객체
 		PreparedStatement pstmt = null; // 운반객체
-		ResultSet rs = null; // 결과
+		ResultSet rs = null;            // 결과
 
 		try {
 			con = ServiceUtil.getConnection();
@@ -167,7 +166,7 @@ public class CartDao {
 	}
 	//////////////
 
-	// 날짜별 카트 회원 수량 출력
+	// 날짜별 카트 회원 수량 출력 Dao
 	public List<Cart> cartDatePrintDao(String date) {
 		List<Cart> list = new ArrayList<Cart>();
 
@@ -224,16 +223,15 @@ public class CartDao {
 		}
 		return list;
 	}
-
 	//////////////
-	// 연관 Order
-	// 회원이 가지고 있는 카트정보에 도서정보를 출력해주는 메소드
+
+	// 회원이 가지고 있는 카트정보에 도서정보를 출력해주는 Dao
 	public List<Cart> cartChoicePrintDao(String input_userid) {
 		List<Cart> list = new ArrayList<Cart>();
 
-		Connection con = null; // 연결객체
+		Connection con = null;          // 연결객체
 		PreparedStatement pstmt = null; // 운반객체
-		ResultSet rs = null; // 결과
+		ResultSet rs = null;            // 결과
 
 		try {
 			con = ServiceUtil.getConnection();
@@ -288,14 +286,13 @@ public class CartDao {
 
 	}
 
-	// 연관 Order
-	// 카트에 있는 도서정보를 출력해주는 기능
+	// 카트에 있는 도서정보를 출력해주는 Dao
 	public List<BookCartVo> cartChoiceBookPrintDao(String input_isbn) {
 		List<BookCartVo> list = new ArrayList<BookCartVo>();
 
-		Connection con = null; // 연결객체
+		Connection con = null;          // 연결객체
 		PreparedStatement pstmt = null; // 운반객체
-		ResultSet rs = null; // 결과
+		ResultSet rs = null;            // 결과
 		
 		try {
 			con = ServiceUtil.getConnection();
@@ -352,7 +349,6 @@ public class CartDao {
 		return list;
 
 	}
-
 	//////////////
 
 }

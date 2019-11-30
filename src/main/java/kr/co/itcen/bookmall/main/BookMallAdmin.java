@@ -119,7 +119,7 @@ public class BookMallAdmin {
 
 		for (MemberOrder morder : mlist) {
 			System.out.println(
-					"유저 아이디" + morder.getUserid() + "주문 번호"+ morder.getOrderno() + "책 이름 :" + morder.getName() + "주문번호 :" + morder.getOrder_date());
+					"유저 아이디 :" + morder.getUserid() + " 주문 번호 : "+ morder.getOrderno() + " 책 이름 : " + morder.getName() + " 주문번호 : " + morder.getOrder_date());
 		}
 
 	}
