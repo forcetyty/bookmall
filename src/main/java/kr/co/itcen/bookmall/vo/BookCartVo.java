@@ -1,6 +1,6 @@
 package kr.co.itcen.bookmall.vo;
 
-//book과 Cart join Vo
+
 public class BookCartVo {
 	private String userid;
 	private String isbn;
@@ -47,5 +47,13 @@ public class BookCartVo {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "BookCartVo [userid=" + userid + ", isbn=" + isbn + ", name=" + name + ", price=" + price
+				+ ", cart_date=" + cart_date + "]";
+	}
+	
+	
 
 }

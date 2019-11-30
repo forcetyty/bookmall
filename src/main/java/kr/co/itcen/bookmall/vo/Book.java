@@ -1,15 +1,5 @@
 package kr.co.itcen.bookmall.vo;
 
-
-
-/*
- * isbm - String - 책 고유 식별번호
- * name - String - 책 이름
- * price - int   - 책 가격
- * maincate - String - 대분류 - 외래키
- * midcate - String  - 중분류 - 외래키
- */
-
 public class Book {
 
 	private String isbn;
@@ -67,5 +57,13 @@ public class Book {
 	public void setMidcate(String midcate) {
 		this.midcate = midcate;
 	}
+
+	@Override
+	public String toString() {
+		return "Book [isbn=" + isbn + ", name=" + name + ", price=" + price + ", maincate=" + maincate + ", midcate="
+				+ midcate + ", count=" + count + "]";
+	}
+	
+	
 
 }

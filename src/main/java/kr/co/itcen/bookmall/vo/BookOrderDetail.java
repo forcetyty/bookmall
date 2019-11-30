@@ -57,4 +57,12 @@ public class BookOrderDetail {
 		this.order_date = order_date;
 	}
 
+	@Override
+	public String toString() {
+		return "BookOrderDetail [isbn=" + isbn + ", name=" + name + ", price=" + price + ", orderNum=" + orderNum
+				+ ", address=" + address + ", order_date=" + order_date + "]";
+	}
+	
+	
+
 }

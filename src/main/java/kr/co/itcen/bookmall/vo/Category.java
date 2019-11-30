@@ -1,10 +1,6 @@
 package kr.co.itcen.bookmall.vo;
 
-/*
- * maincate - 대분류
- * midcate - 중분류
- * 
- */
+
 public class Category {
 
 	private String maincate;

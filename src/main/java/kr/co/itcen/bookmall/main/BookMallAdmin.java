@@ -8,18 +8,13 @@ import kr.co.itcen.bookmall.vo.Member;
 import kr.co.itcen.bookmall.vo.MemberOrder;
 
 // BookMall 관리자 화면!!!
-// 관리자 기능
-// 1. 회원 삭제 기능			- 완료
-// 2. 회원별 책 구매 내역 확인
-// 3. 월별 책 판매량 확인
 public class BookMallAdmin {
 
-	private String ID = "admin";
-	private String PW = "1234";
+	private String ID = "admin";	// 관리자 로그인에 대한 ID
+	private String PW = "1234";		// 관리자 비밀번호에 대한 Password
 
 	private Scanner scan = new Scanner(System.in);
 
-	/////////////////////
 	// 관리자 로그인 처리 Process
 	public void loginProcess() {
 		String id = null;
@@ -42,7 +37,6 @@ public class BookMallAdmin {
 	}
 	/////////////////////
 
-	/////////////////////
 	// 로그인된 관리자 처리 Process
 	public void adminProcess() {
 		int choice = 0;
@@ -80,7 +74,6 @@ public class BookMallAdmin {
 	}
 	///////////////////////
 
-	///////////////////////
 	// 회원을 삭제하는 기능
 	public void memberDelete() {
 		String id = null;
@@ -97,7 +90,6 @@ public class BookMallAdmin {
 	}
 	///////////////////////
 
-	///////////////////////
 	// 회원별 책 구매내역 확인
 	public void memberBookOrderCheck() {
 		// member와 cart, bookorder를 기반으로 데이터를 가져와야함.

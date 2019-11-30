@@ -5,10 +5,10 @@ public class Cart {
 	private int no;
 	private String userid;
 	private String isbn;
-	private String num; // 수량을 배열로 받기함 - 카트에 수량을 담을때 배열을 사용했기 때문!!!
+	private String num;
 	private String cart_date;
 	private int count;
-	
+
 	public int getNo() {
 		return no;
 	}
@@ -55,6 +55,12 @@ public class Cart {
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+
+	@Override
+	public String toString() {
+		return "Cart [no=" + no + ", userid=" + userid + ", isbn=" + isbn + ", num=" + num + ", cart_date=" + cart_date
+				+ ", count=" + count + "]";
 	}
 
 }

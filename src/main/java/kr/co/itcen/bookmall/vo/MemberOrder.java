@@ -1,7 +1,6 @@
 package kr.co.itcen.bookmall.vo;
 
 public class MemberOrder {
-// userid orderno order_date name
 	private String userid;
 	private int orderno;
 	private String order_date;

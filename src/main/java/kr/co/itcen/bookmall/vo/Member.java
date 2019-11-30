@@ -1,13 +1,5 @@
 package kr.co.itcen.bookmall.vo;
 
-/*
- * user 테이블에 대한 VO
- * userid - 아이디
- * name - 이름
- * pnumber - 핸드폰 번호
- * email - 이메일
- * password - 비밀번호
- */
 
 public class Member {
 

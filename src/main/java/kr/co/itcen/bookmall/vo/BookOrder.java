@@ -1,9 +1,5 @@
 package kr.co.itcen.bookmall.vo;
 
-//카트를 주문하는 Vo
-// cartno - int - 카트 고유 번호를 가지고 오는 기능
-// orderno - int - 주문 고유 번호
-// order_date - date - 주문날짜
 public class BookOrder {
 
 	private int cartno;
@@ -42,5 +38,13 @@ public class BookOrder {
 	public void setOrder_date(String order_date) {
 		this.order_date = order_date;
 	}
+
+	@Override
+	public String toString() {
+		return "BookOrder [cartno=" + cartno + ", orderno=" + orderno + ", order_date=" + order_date + ", addr=" + addr
+				+ "]";
+	}
+	
+	
 
 }

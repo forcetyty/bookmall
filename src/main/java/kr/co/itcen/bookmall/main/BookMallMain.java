@@ -18,16 +18,7 @@ import kr.co.itcen.bookmall.vo.Cart;
 import kr.co.itcen.bookmall.vo.Category;
 import kr.co.itcen.bookmall.vo.Member;
 
-/*
- * - BookMall을 실행시키는 메인 클래스
- * - 핵심 메소드
- * - 1. MemberDaoTest
- * - 2. CategoryDaoTest
- * - 3. BookDaoTest
- * - 4. CartDaoTest
- * - 5. OrderDaoTest
- * - 추가 발전사항 - 관리자 기능을 구현!!!
- */
+
 public class BookMallMain {
 	static Scanner scan = new Scanner(System.in);
 	static int num = 0;
@@ -37,13 +28,11 @@ public class BookMallMain {
 		// TODO Auto-generated method stub
 		BookMallMain book = new BookMallMain();
 		BookMallAdmin admin = new BookMallAdmin();
-		//book.init();
 		
 		System.out.println("********************************************************************************************************");
 		System.out.println("***********************************************태영 서점***************************************************");
 		System.out.println("********************************************************************************************************");
 
-		// 태영서점에 메뉴가 지속적으로 반독 될 수 있도록 해주는 것!!!
 		while (true) {
 			System.out.println();
 			System.out.println("********************************************************************************************************");
@@ -51,13 +40,7 @@ public class BookMallMain {
 					"1. 회원가입  2. 카테고리 출력  3. 상품리스트  4. 카트추가  5. 카트 목록보기  6. 카트 주문  7. 카트목록보기 8.종료 9. 관리자 로그인");
 			
 			num = scan.nextInt();	
-			// No Such ElemntException
-			// 이 지속적으로 발생한다.
-			// 해결방법을 고민해봐야 한다.
-			// 해결!!! - 각 메소드에서 Close해준 것을 해지함.
 
-			// "1. 회원가입  2. 회원리스트 출력  3. 카테고리 출력  4. 상품리스트  5. 카트추가  6. 카트 목록보기  7. 카트 주문  8. 카트목록보기 9.종료");
-			// 선택사항이 아래 메소드를 실행
 			switch (num) {
 				case 1:
 					book.memberDaoTestInsert();
@@ -92,7 +75,6 @@ public class BookMallMain {
 	/////////////////////
 
 	// 회원가입하는 테이블
-	//  no - 기본키 - 자동증가 name - 이름 pnumber - 핸드폰 번호 email - 이메일 password - 비밀번호
 	public void memberDaoTestInsert() {
 		 
 		Scanner scanner = new Scanner(System.in);
@@ -114,14 +96,6 @@ public class BookMallMain {
 		String pnumber = scanner.next();
 		member.setPnumber(pnumber);
 
-		/*
-		 * try {
-		 * 
-		 * } catch (Exception e) { // TODO: handle exception
-		 * System.out.println("11자리를 넘겼습니다."); System.out.println("처음으로 돌아갑니다.\n");
-		 * init(); }
-		 */
-
 		System.out.print("이메일 : ");
 		String email = scanner.next();
 		member.setEmail(email);
@@ -136,6 +110,7 @@ public class BookMallMain {
 
 	}
 	/////////////////////
+	
 	// 회원리스트를 출력하는 메소드
 	public void memberDaoTest() {
 		MemberDao dao = new MemberDao();
@@ -230,14 +205,7 @@ public class BookMallMain {
 	}
 	/////////////////////
 
-	
 	// 카트 리스트 확인
-	// Process
-	// 1. 아이디 선택 - 해결
-	// 2. 상품목록 선택 - 해결
-	// 3. 수량 선택 - 해결
-	// 4. 카트에 담김 - 완료
-	// 5. 카트 목록 - cartDaoTestPrint
 	public void cartDaoTest() {
 
 		// 아이디와 상품목록을 담기 위한 기능
@@ -294,11 +262,7 @@ public class BookMallMain {
 	}
 	/////////////////////
 	
-
-	// 5. 카트 목록 출력
-	// a. 카트 전체 목록 출력
-	// b. 카트 회원 전체 카트 수량 출력
-	// c. 날짜별 목록 출력
+	// 카드 출력 메소드
 	public void cartDaoTestPrint() {
 
 		List<Cart> list;
@@ -343,9 +307,7 @@ public class BookMallMain {
 	}
 	/////////////////////
 	
-
-	// cartOrder
-	// 카트에 있는 목록을 실제 주문하도록 하는 기능을 갖고 있음
+	// 카트에 있는 목록을 실제 주문하도록 하는 기능을 구현한 메소드
 	public void cartOrder() {
 
 		System.out.println("-------------회원 목록 -------------");
@@ -406,7 +368,6 @@ public class BookMallMain {
 	}
 	/////////////////////
 	
-
 	// 주문 테이블에 있는 정보를 출력하는 메소드
 	public void OrderDaoTest() {
 		System.out.println("-------------------주문 목록 확인-------------------");
@@ -442,7 +403,6 @@ public class BookMallMain {
 		default:
 			break;
 		}
-
 	}
 	/////////////////////
 }
